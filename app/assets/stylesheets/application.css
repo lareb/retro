@@ -9,5 +9,21 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
+ *= require dataTables/src/demo_table_jui
  *= require_tree .
  */
+
+body{
+    padding: 0;
+    margin: 0;
+    background-repeat:repeat;
+    background-color:#4E4E4E;
+    font-family:'Arial',sans-serif;
+    color:#000;
+}
+
+a{
+    text-decoration: none;
+}

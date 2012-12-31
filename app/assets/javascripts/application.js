@@ -12,4 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
 //= require_tree .
+
+
+$(document).ready(function(){
+    $('.data-table').dataTable({
+          sPaginationType: "full_numbers",
+          bJQueryUI: true,
+          iDisplayLength: 25,
+       	  aLengthMenu: [10, 25, 50, 100, 150]
+    });
+});

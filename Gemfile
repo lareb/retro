@@ -16,7 +16,8 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
+  gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
+  gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -28,7 +29,8 @@ gem 'devise'
 gem "cancan"
 # make rails form easy
 gem 'simple_form'
-
+#data table pagination
+gem 'will_paginate'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

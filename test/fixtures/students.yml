@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  father_name: MyString
+  mother_name: MyString
+  local_guardian_name: MyString
+  address_1: MyString
+  address_2: MyString
+  contact_no_1: MyString
+  contact_no_2: MyString
+  dob: 2012-12-31
+  blood_group: MyString
+  klass_id: 1
+  roll_no: MyString
+  enrollment_no: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  father_name: MyString
+  mother_name: MyString
+  local_guardian_name: MyString
+  address_1: MyString
+  address_2: MyString
+  contact_no_1: MyString
+  contact_no_2: MyString
+  dob: 2012-12-31
+  blood_group: MyString
+  klass_id: 1
+  roll_no: MyString
+  enrollment_no: MyString

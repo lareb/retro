@@ -1,0 +1,22 @@
+<h1>Classes</h1>
+
+<table id="classes" class="display data-table" >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @klasses.each do |klass| %>
+      <tr>
+        <td><%= link_to klass.display_name, klass_students_path(klass) %></td>
+        <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<br />
+
+<%= link_to 'New Student', new_klass_path %>
