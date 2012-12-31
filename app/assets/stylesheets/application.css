@@ -16,6 +16,7 @@
  */
 
 body{
+    background-image: url(/assets/web/bg_pattern.png);
     padding: 0;
     margin: 0;
     background-repeat:repeat;
@@ -26,4 +27,21 @@ body{
 
 a{
     text-decoration: none;
+}
+
+/*----------HEADER-------------*/
+#header{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #000000;
+    height: 100px;
+    margin: 10px auto;
+    width: 88%;
+}
+
+.wrapper{
+    margin: 0 auto;
+    min-height: 700px;
+    width: 88%;
 }

@@ -1,5 +1,7 @@
 Pathshala::Application.routes.draw do
 
+  devise_for :users
+
   #resources :students
   resources :klasses do
     resources :students
