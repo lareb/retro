@@ -1,4 +1,6 @@
 class KlassesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /klasses
   # GET /klasses.json
   def index
