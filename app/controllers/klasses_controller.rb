@@ -14,6 +14,7 @@ class KlassesController < ApplicationController
 
   # GET /students/1
   # GET /students/1.json
+  # nishant test
   def show
     @klass = Klass.find(params[:id])
 
