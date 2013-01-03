@@ -40,6 +40,20 @@ a{
     width: 88%;
 }
 
+#header .logo{
+    color: #FFFFFF;
+    float: left;
+    font-size: 36px;
+    padding: 28px;
+}
+
+#header .user-navigation{
+    color: white;
+    float: right;
+    margin-right: 15px;
+    margin-top: 60px;
+}
+
 .wrapper{
     margin: 0 auto;
     min-height: 700px;
