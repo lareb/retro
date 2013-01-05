@@ -1,8 +1,6 @@
 class TeachersController < ApplicationController
   before_filter :authenticate_user!
-
   load_and_authorize_resource :teacher
-  #load_and_authorize_resource :teacher, :through => :teacher_klasses
 
   def index
     respond_to do |format|

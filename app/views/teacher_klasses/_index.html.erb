@@ -1,0 +1,21 @@
+<table id="teachers" class="display data-table" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Is Class Teacher</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @teacher_klasses.each do |tk| %>
+      <tr>
+        <td><%= link_to tk.teacher.name, "#" %></td>
+        <td><%= check(tk.is_class_teacher)%></td>
+        <td><%= link_to 'Edit', "#", :remote => true %></td>
+        <td><%= link_to 'Deactive', "#", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+</table>

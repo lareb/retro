@@ -5,6 +5,14 @@ class TeacherKlassesController < ApplicationController
   load_and_authorize_resource :teacher_klass, :through => :klass
 
   def index
+    if request.xhr?
+      render :partial => "index"
+    else
+      respond_to do |format|
+        format.html
+        format.json { render json: @teacher_klasses }
+      end
+    end
 
   end
 

@@ -59,3 +59,5 @@ a{
     min-height: 700px;
     width: 88%;
 }
+
+span.check { background-image: url(/assets/web/check.png); height: 18px; width: 18px; display: block; margin: 0 auto;}
