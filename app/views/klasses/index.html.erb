@@ -1,9 +1,11 @@
 <h1>Classes</h1>
 
-<table id="classes" class="display data-table" >
+<table id="klasses" class="display" >
   <thead>
     <tr>
       <th>Name</th>
+      <th>Teachers</th>
+      <th>Add Teacher</th>
       <th></th>
     </tr>
   </thead>
@@ -11,6 +13,8 @@
     <% @klasses.each do |klass| %>
       <tr>
         <td><%= link_to klass.display_name, klass_students_path(klass) %></td>
+        <td><%= link_to 'Teachers (+)', "#", :class_id => klass.id, :class => "open" %></td>
+        <td><%= link_to 'Add Teacher', new_klass_teacher_klass_path(klass) %></td>
         <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
       </tr>
     <% end %>
@@ -19,4 +23,49 @@
 </table>
 <br />
 
-<%= link_to 'New Student', new_klass_path %>
+<%= link_to 'New Class', new_klass_path %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#klasses').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+    $('#klasses tbody td a.open ').live('click', function (){
+      var nTr1 = $(this).parents('tr')[0];
+      console.log($(this));
+      if (oTable.fnIsOpen(nTr1) && $(nTr1).next().find("td.add_new").length > 0) {
+        oTable.fnClose(nTr1);
+        //toggle icon class
+        $(this).removeClass("shrink");
+        $(this).addClass("expand");
+        return false;
+      }else{
+        oTable.fnOpen(nTr1, showTeacher(nTr1, $(this).attr("class_id"), 'new'), "add_new new_member_"+$(nTr1).attr("id"));
+        //toggle icon class
+        $(this).removeClass("expand");
+        $(this).addClass("shrink");
+        return false;
+      }
+    });
+
+  });
+  
+  function showTeacher(nTr, data, op){
+    var url = ("/klasses/" + data + "/teachers/");
+    var sOut = ""
+    $.ajax({
+      type:'GET',
+      async:false,
+      url:url,
+      success:function (resp) {
+        sOut = resp;
+      }
+    });
+
+    return sOut;
+  }
+</script>
