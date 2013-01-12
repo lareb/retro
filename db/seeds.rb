@@ -7,13 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Seed Klass data
+puts "Pushing Classes"
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE klasses")
 Klass.create!([{ :name => '1', :display_name => "1st"},{ :name => '2', :display_name => "2nd"},{ :name => '3', :display_name => "3rd"},{ :name => '4', :display_name => "4th"},
                { :name => '5', :display_name => "5th"},{ :name => '6', :display_name => "6th"},{ :name => '7', :display_name => "7th"},{ :name => '8', :display_name => "8th"}])
 
 #Seed Roles data
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")
-roles = [{:name => "admin", :display_name => "Admin"}, {:name => "pickup_champ", :display_name => "Pickup Champ"},{:name => "packing_champ", :display_name => "Packing Champ"},{:name => "delivery_champ", :display_name => "Delivery hamp"},{:name => "oredr_collector", :display_name => "Oredr Collector"}]
+roles = [{:name => "admin", :display_name => "Admin"}, {:name => "teacher", :display_name => "Teacher"},{:name => "guardian", :display_name => "Guardian"},{:name => "principal", :display_name => "principal"}]
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")
 Role.create(roles)
 
@@ -92,4 +93,12 @@ puts "-------- Inserting Teachers(female) information --------------"
   Teacher.create!(:title => female_title[rand(3)], :first_name => "#{female_first_name[rand(female_first_name.length)]}", :last_name => "#{last_name[rand(last_name.length)]}",
                   :higher_degree => higher_degree[rand(6)], :contact_no_1 => "#{prng.rand(21528950..29999999)}", :contact_no_1 => "#{prng.rand(21528950..29999999)}",
                   :address => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}")
+end
+
+
+puts "Subjects"
+subjects = ["Hindi", "English", "Physics", "Arts", "Social Science", "Science", "Mathematics", "Sanskrit", "Drwaing", "Dancing", "Music", "Chemestry", "Comarce","History"]
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE subjects")
+subjects.each do |subject|
+  Subject.create!(:name => subject, :description => subject, :is_live => true)
 end

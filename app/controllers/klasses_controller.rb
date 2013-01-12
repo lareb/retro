@@ -5,8 +5,7 @@ class KlassesController < ApplicationController
   # GET /klasses
   # GET /klasses.json
   def index
-    #@klasses = Klass.all
-    #load_and_authorize_resource will load the object
+    @render_breadcrumb = breadcrumb_path({:disable => "Class"})
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @klasses }

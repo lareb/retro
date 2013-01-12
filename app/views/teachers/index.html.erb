@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Subjects</th>
       <th>Higher Degree</th>
       <th>Contact</th>
       <th>Address</th>
@@ -14,6 +15,7 @@
     <% @teachers.each do |teacher| %>
       <tr>
         <td><%= link_to teacher.name, teacher_path(teacher) %></td>
+        <td><%= teacher.subjects.map(&:name).join(", ") %>&nbsp;<%= link_to "Add (+)", new_teacher_teacher_subject_path(teacher) %></td>
         <td><%= teacher.higher_degree %></td>
         <td><%= teacher.contact_no_2.nil? ? teacher.contact_no_1 : "#{teacher.contact_no_1 }, #{teacher.contact_no_2}" %></td>
         <td><%= raw teacher.address %></td>

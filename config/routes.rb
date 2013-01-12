@@ -1,5 +1,4 @@
 Pathshala::Application.routes.draw do
-
   #devise_for :users
   devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register', :sign_up => 'cmon_let_me_in' }
 
@@ -8,11 +7,26 @@ Pathshala::Application.routes.draw do
   #  resources :klasses
   #end
 
-  resources :teachers
+  resources :students
+
+  #load_and_authorize_resource :subject
+  #load_and_authorize_resource :teacher_subject, :through => :subject
+
+  resources :subjects
+  resources :teachers do
+    resources :teacher_subjects, :path => 'subjects'
+  end
+
+
+  #load_and_authorize_resource :klass
+  #load_and_authorize_resource :teacher_klass, :through => :klass
+
   resources :klasses do
     resources :students
     resources :teacher_klasses, :path => "teachers"
   end
+
+  
 
   #match 'teachers/:id' => 'teacher#show'
 

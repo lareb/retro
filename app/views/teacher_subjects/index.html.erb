@@ -1,0 +1,22 @@
+<h1>Teacher's Subjects</h1>
+
+<table class="display data-table">
+  <thead>
+  <tr>
+    <th>Teacher</th>
+    <th>Subjects</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @teacher_subjects.each do |teacher_subject| %>
+  <tr>
+    <td><%= teacher_subject.teacher.name %></td>
+    <td><%= teacher_subject.teacher.subjects.map(&:name).join(", ") %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%#= link_to 'New Teacher subject', new_teacher_subject_path %>

@@ -11,6 +11,10 @@
   <%= render :partial => "/layouts/header"%>
 
   <div class="wrapper">
+    <%= render :partial => "/layouts/navigation" %>
+
+    <breadcrumb><%= raw @render_breadcrumb %></breadcrumb>
+    
     <%= yield %>
   </div>
 

@@ -1,0 +1,32 @@
+<h1>Subjects</h1>
+
+<table id="subjects" class="display data-table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Teachers</th>
+    <th>Description</th>
+    <th>Is live</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+    <tbody>
+
+<% @subjects.each do |subject| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%= link_to subject.name, subject %></td>
+    <td><%= raw subject.teachers.map(&:name).join("<br/> ") %></td>
+    <td><%= subject.description %></td>
+    <td><%= check(subject.is_live) %></td>
+    <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
+    <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  </tbody>
+
+</table>
+
+<br />
+
+<%= link_to 'New Subject', new_subject_path %>

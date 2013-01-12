@@ -4,6 +4,10 @@ class Teacher < ActiveRecord::Base
   has_many :teacher_klasses
   has_many :klasses, :through => :teacher_klasses
 
+  has_many :teacher_subjects
+  has_many :subjects, :through => :teacher_subjects
+
+
   def name
     "#{self.title} #{self.first_name.try(:capitalize)} #{self.last_name.try(:capitalize)}"
   end

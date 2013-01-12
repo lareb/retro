@@ -40,6 +40,18 @@ a{
     width: 88%;
 }
 
+breadcrumb{
+    background: none repeat scroll 0 0 gray;
+    color: white;
+    float: left;
+    font-size: 12px;
+    padding: 6px;
+}
+
+breadcrumb a{
+    color: white;
+}
+
 #header .logo{
     color: #FFFFFF;
     float: left;
@@ -54,10 +66,104 @@ a{
     margin-top: 60px;
 }
 
+span.check { background-image: url(/assets/web/check.png); height: 18px; width: 18px; display: block; margin: 0 auto;}
+
+/*------NAVIGATION---------*/
 .wrapper{
     margin: 0 auto;
     min-height: 700px;
     width: 88%;
 }
 
-span.check { background-image: url(/assets/web/check.png); height: 18px; width: 18px; display: block; margin: 0 auto;}
+.wrapper h1{
+    float: left;
+    font-family: Eurostile,jura,Arial;
+    margin: 10px 0;
+    width: auto;
+    clear: both;
+}
+
+#nav,
+#config-nav
+{
+/*    background-image: url("/assets/web/nav-bg.png");
+    background-repeat: repeat-x;*/
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+ul#nav > LI,
+ul#config-nav li
+{
+    float: left;
+    list-style: none;
+    color: #fff;
+    background-image: url("/assets/web/nav-bg.png");
+    background-repeat: repeat-x;
+    margin-right: 1px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
+ul#nav li a,
+ul#config-nav li a{
+    color: #FFFFFF;
+    float: left;
+    padding: 13px 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: Eurostile, jura, Arial;
+    font-size: 18px;
+}
+
+ul#nav li a{ width: 122px; }
+ul#config-nav li a{ width: 122px; }
+
+#nav li a.last,
+ul#config-nav li a.last{
+    border-right: 0px;
+}
+
+#nav li.first{
+/*    border-radius: 5px 0px 0px 5px;
+    -moz-border-radius: 5px 0px 0px 5px;
+    -webkit-border-radius: 5px 0px 0px 5px;
+    border-radius: 5px 0px 0px 5px;*/
+}
+
+#nav li.last{
+/*    border-radius: 0px 5px 5px 0px;
+    -moz-border-radius: 0px 5px 5px 0px;
+    -webkit-border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 5px 5px 0px;*/
+}
+
+#nav li.active a:hover,
+#nav li.active a{
+    color: #B649F8 !important;
+}
+
+#nav li a:hover,
+#nav li.active,
+ul#config-nav li a:hover,
+ul#config-nav li.active{
+    background: #fff url("/assets/web/active-bg.png") repeat-x;
+    background-position: 0px -1px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+table.display td {
+    padding: 5px 0 !important;
+    text-align: center;
+}

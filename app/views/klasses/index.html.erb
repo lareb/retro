@@ -6,15 +6,17 @@
       <th>Name</th>
       <th>Teachers</th>
       <th>Add Teacher</th>
+      <th>Students</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @klasses.each do |klass| %>
-      <tr>
+      <tr class="<%= cycle("odd", "even") %>">
         <td><%= link_to klass.display_name, klass_students_path(klass) %></td>
         <td><%= link_to 'Teachers (+)', "#", :class_id => klass.id, :class => "open" %></td>
         <td><%= link_to 'Add Teacher', new_klass_teacher_klass_path(klass) %></td>
+        <td><%= link_to 'Students', klass_students_path(klass) %></td>
         <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
       </tr>
     <% end %>
