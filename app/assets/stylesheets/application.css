@@ -166,4 +166,14 @@ ul#config-nav li.active{
 table.display td {
     padding: 5px 0 !important;
     text-align: center;
+    font-size: 12px;
+}
+
+
+.form{
+    clear: both;
+    float: left;
+    height: auto;
+    margin: 0 auto;
+    width: 600px;
 }

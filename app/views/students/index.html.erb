@@ -22,7 +22,7 @@
         <td><%= raw student.address %></td>
         <td><%= student.contact_no_2.nil? ? student.contact_no_1 : "#{student.contact_no_1 }, #{student.contact_no_2}" %></td>
         <td><%= student.roll_no %></td>
-        <td><%= student.enrollment_no %></td>
+        <td><%= student.enrollment_no.upcase %></td>
         <td><%= link_to 'Edit', edit_klass_student_path(params[:klass_id], student) %></td>
       </tr>
     <% end %>

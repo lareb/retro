@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @teacher.name %> <%=check @teacher.is_live%>
+</p>
+
+<p>
+  <b>Contact Numbers:</b>
+  <%= @teacher.contact_no_1 %><%= @teacher.contact_no_2.blank? ? "" : " & #{@teacher.contact_no_2}" %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @teacher.address %>
+</p>
+
+
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>

@@ -1,10 +1,11 @@
 <h1>Teachers</h1>
 
-<table id="teacher" class="display data-table" >
+<table id="teacher" class="display" >
   <thead>
     <tr>
       <th>Name</th>
       <th>Subjects</th>
+      <th>Classes</th>
       <th>Higher Degree</th>
       <th>Contact</th>
       <th>Address</th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= link_to teacher.name, teacher_path(teacher) %></td>
         <td><%= teacher.subjects.map(&:name).join(", ") %>&nbsp;<%= link_to "Add (+)", new_teacher_teacher_subject_path(teacher) %></td>
+        <td><%= link_to "Classes (+)", "#", :teacher_id => teacher.id, :class => "open" %></td>
         <td><%= teacher.higher_degree %></td>
         <td><%= teacher.contact_no_2.nil? ? teacher.contact_no_1 : "#{teacher.contact_no_1 }, #{teacher.contact_no_2}" %></td>
         <td><%= raw teacher.address %></td>
@@ -28,3 +30,48 @@
 <br />
 
 <%= link_to 'Add New Teacher', new_teacher_path() %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#teacher').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+    $('#klasses tbody td a.open ').live('click', function (){
+      var nTr1 = $(this).parents('tr')[0];
+      console.log($(this));
+      if (oTable.fnIsOpen(nTr1) && $(nTr1).next().find("td.add_new").length > 0) {
+        oTable.fnClose(nTr1);
+        //toggle icon class
+        $(this).removeClass("shrink");
+        $(this).addClass("expand");
+        return false;
+      }else{
+        oTable.fnOpen(nTr1, showClasses(nTr1, $(this).attr("class_id"), 'new'), "add_new new_member_"+$(nTr1).attr("id"));
+        //toggle icon class
+        $(this).removeClass("expand");
+        $(this).addClass("shrink");
+        return false;
+      }
+    });
+
+  });
+
+  function showClasses(nTr, data, op){
+    var url = ("/teachers/" + data + "/klasses/");
+    var sOut = ""
+    $.ajax({
+      type:'GET',
+      async:false,
+      url:url,
+      success:function (resp) {
+        sOut = resp;
+      }
+    });
+
+    return sOut;
+  }
+</script>

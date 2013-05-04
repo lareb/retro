@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= f.association :subject %>
+  <%= f.association :subject, :prompt => "Select", :collection => Subject.available_subjects(@teacher) %>
 
   <div class="actions">
     <%= f.submit %>

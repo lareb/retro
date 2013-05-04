@@ -1,0 +1,9 @@
+<div class="form-container">
+  <ul>
+  <% @roles.each do |role| %>
+    <li><%= role.display_name %><%#= link_to "Edit", edit_role_path(role), :class => "right", :remote => true %></li>
+  <%end%>
+  </ul>
+  <div class="right footer-note">All Roles are system generated</div>
+</div>
+

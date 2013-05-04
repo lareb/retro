@@ -4,4 +4,7 @@ class Subject < ActiveRecord::Base
   has_many :teacher_subjects
   has_many :teachers, :through => :teacher_subjects
 
+  scope :available_subjects, lambda{|teacher|
+    where("id not in (#{teacher.subjects.map(&:id).join(",")})")
+  }
 end
