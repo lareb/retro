@@ -1,0 +1,10 @@
+
+<div class="assign" style="float: left">
+<h3>Assign Roles for <%= link_to @user.name, @user%></h3>
+<%= render :partial => "roles", :locals => {:roles => @roles, :user => @user} %>
+</div>
+<div class="assign" style="float: right">
+
+<h3>Remove Roles of <%=@user.name%></h3>
+<%= render :partial => "remove_roles", :locals => {:roles => @roles, :user => @user} %>
+</div>

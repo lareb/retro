@@ -1,0 +1,18 @@
+<%= form_for (user), :method => 'post',:url => deallocate_roles_user_path(user) do |f| %>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% user.roles.each do |user_role| %>
+  <tr>
+    <td><%= check_box_tag("roles[#{user_role.name}]", user_role.id) %>
+      <label><%=  user_role.display_name %></label></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="actions">
+    <%= f.submit "Remove"%>
+  </div>
+<% end %>

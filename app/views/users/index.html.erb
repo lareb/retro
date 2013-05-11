@@ -1,0 +1,32 @@
+
+<table class="display data-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Roles</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each_with_index do |user, index| %>
+    <tr>
+      <td><%= index + 1%></td>
+      <td><%= link_to user.try(:teacher).try(:name), user,:class => "fancybox fancybox.ajax" %></td>
+      <td><%= get_roles(user) %></td>
+      <td><%= link_to "Edit",edit_user_path(user), :class => "edit-info fancybox fancybox.ajax"%></td>
+      <td><%= link_to 'Delete', user, method: :delete, :class => "delete" , :confirmation => "Are you sure, you want to delete <b>#{user.name}</b> User?" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+<%= link_to 'New User', new_user_path ,:class => "right" ,:remote => true%>
+
+<div id="new-user">
+
+</div>
+
+							   

@@ -1,0 +1,14 @@
+
+<div class="form-container">
+  <%= simple_form_for(@user) do |f| %>
+      <%= f.input :password%>
+      <%= f.input :password_confirmation %>
+
+      <%if can? :manage, Role%>
+        <%= f.association :roles, :as => :check_boxes, :label => "Assign Roles", :label_method => :display_name, :wrapper_html => {:class => :boolean} %>
+      <%end%>
+      <div class="actions">
+        <%= f.submit "Update" %>
+      </div>
+  <% end %>
+</div>

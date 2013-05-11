@@ -1,0 +1,6 @@
+<% if params[:password] || defined?(@password_update) %>
+      $("#new-user").html('<%= escape_javascript(render "form_password") %>');
+<% else %>
+      $("#new-user").html('<%= escape_javascript(render "form_profile") %>');
+<% end %>
+

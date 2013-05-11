@@ -1,0 +1,26 @@
+
+<div class="form-container">
+  <div class="simple_form show">
+
+          <div class="input">
+            <label>Name:</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= @user.name %>" />
+          </div>
+
+          <div class="input">
+            <label>Email:</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= @user.email %>" />
+          </div>
+
+          <div class="input">
+            <label>Roles:</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= get_roles(@user) %>" />
+          </div>
+
+          <div class="input">
+            <label class="string optional">&nbsp;</label>
+            <%= link_to "Edit",edit_user_path(@user), :class => "edit fancybox fancybox.ajax"%>&nbsp;&nbsp;
+            <%= link_to "Change Password", edit_user_path(@user, :password => true), :id => "editpass", :class => "password-change",:remote => true%>
+          </div>
+  </div>
+</div>

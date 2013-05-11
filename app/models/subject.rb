@@ -5,6 +5,10 @@ class Subject < ActiveRecord::Base
   has_many :teachers, :through => :teacher_subjects
 
   scope :available_subjects, lambda{|teacher|
-    where("id not in (#{teacher.subjects.map(&:id).join(",")})")
+    unless teacher.subjects.blank?
+      where("id not in (#{teacher.subjects.map(&:id).join(',')})")
+    else
+      where(:is_live => true)
+    end
   }
 end

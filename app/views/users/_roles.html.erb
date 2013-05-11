@@ -1,0 +1,17 @@
+<%= form_for (user),:method => 'post', :url => allocate_roles_user_path(user) do |f|  %>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% roles.each do |role| %>
+  <tr>
+    <td><%= check_box_tag("roles[#{role.name}]", role.id) %>
+      <label for="roles_<%=role.name%>"><%=role.display_name %></label></td>
+  </tr>
+<% end %>
+</table>
+<div class="actions">
+    <%= f.submit "Assign" %>
+  </div>
+<%end %>

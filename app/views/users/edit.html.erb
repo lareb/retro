@@ -1,0 +1,5 @@
+<% if params[:password] || defined?(@password_update) %>
+  <%= render :partial => "form_password" %>
+<% else %>
+  <%= render :partial => "form_profile" %>
+<% end %>

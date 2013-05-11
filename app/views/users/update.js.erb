@@ -1,0 +1,6 @@
+<% if @user.errors.any? %>
+    $("#password_error").html("<%=raw @user.errors.full_messages.join('<br/>');%>");
+<%else%>
+    $("#new-user").html("");
+    $(".message_box").html("<div class='notice'>Password successfully updated</div>");
+<% end %>

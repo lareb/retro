@@ -8,7 +8,7 @@
       <th>Classes</th>
       <th>Higher Degree</th>
       <th>Contact</th>
-      <th>Address</th>
+      <th>Create An Account</th>
       <th></th>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
         <td><%= link_to "Classes (+)", "#", :teacher_id => teacher.id, :class => "open" %></td>
         <td><%= teacher.higher_degree %></td>
         <td><%= teacher.contact_no_2.nil? ? teacher.contact_no_1 : "#{teacher.contact_no_1 }, #{teacher.contact_no_2}" %></td>
-        <td><%= raw teacher.address %></td>
+        <td><%= teacher.user ? (link_to "Edit Account", edit_user_path(teacher.user)) : (link_to "Creat an Account", new_teacher_user_path(teacher)) %></td>
         <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
       </tr>
     <% end %>

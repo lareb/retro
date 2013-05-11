@@ -1,0 +1,48 @@
+
+<%if request.xhr?%>
+  <div id ="order-detail">
+    <h1><%= @user.name%></h1>
+
+    <top_view>
+      <div class="simple_form edit_order_pickup_list">
+        <div class="popupview-form" style="width: 400px">
+
+          <div class="input">
+            <label>First Name</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= @user.first_name %>" />
+          </div>
+
+          <div class="input">
+            <label>Last Name</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= @user.last_name %>" />
+          </div>
+
+          <div class="input">
+            <label>Email</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= @user.email %>" />
+          </div>
+
+          <div class="input">
+            <label>Roles</label>
+            <input type="text" disabled="disabled" class="disable" value="<%= get_roles(@user) %>" />
+          </div>
+
+          <div class="input">
+            <label class="string optional">&nbsp;</label>
+            <%= link_to "Edit",edit_user_path(@user), :class => "edit"%>
+          </div>
+
+        </div>
+      </div>
+    </top_view>
+  </div>
+
+<%else%>
+
+  <%= render "show" %>
+
+<%end%>
+
+<div id="new-user">
+
+</div>

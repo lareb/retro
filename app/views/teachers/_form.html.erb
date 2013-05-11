@@ -14,12 +14,14 @@
     <%= f.input :contact_no_1, :as => :string %>
     <%= f.input :contact_no_2, :as => :string %>
     <%= f.input :is_live, :as => :boolean, :label => "Live" %>
+    <%= f.association :subjects, :as => :check_boxes, :label => "Subjects", :wrapper_html => {:class => :boolean} %>
 
-    <%#= f.simple_fields_for :users do |user| %>
-      <%#= user.input :email %>
-      <%#= user.input :password %>
-      <%#= user.input :password_confirmation %>
-    <%# end %>
+
+    <%= f.simple_fields_for @user do |user| %>
+      <%= user.input :email %>
+      <%= user.input :password %>
+      <%= user.input :password_confirmation %>
+    <% end %>
     <%= f.submit %>
   <% end %>
 </div>

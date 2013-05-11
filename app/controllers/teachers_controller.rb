@@ -24,6 +24,7 @@ class TeachersController < ApplicationController
   # GET /subjects/new
   # GET /subjects/new.json
   def new
+    @user = User.new
     @teacher = Teacher.new
     respond_to do |format|
       format.html # new.html.erb
