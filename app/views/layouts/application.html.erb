@@ -9,9 +9,11 @@
 <body>
 
   <%= render :partial => "/layouts/header"%>
-
+  <div class="white-border"></div>
+  <%= render :partial => "/layouts/navigation" %>
+  
   <div class="wrapper">
-    <%= render :partial => "/layouts/navigation" %>
+    
 
     <breadcrumb><%= raw @render_breadcrumb %></breadcrumb>
     

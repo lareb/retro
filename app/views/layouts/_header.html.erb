@@ -1,13 +1,15 @@
-  <div id="header">
-      <div class="logo">Pathshala</div>
+<div id="header">
+  <div class="header-container">
+    <div class="logo"><icon></icon>pathshaala</div>
 
-      <div class="user-navigation">
+    <div class="user-navigation">
 
-        <% if current_user %>
-            <%= current_user.email %>
-            (<%= link_to 'logout', destroy_user_session_path, method: :delete %>)
-        <% else%>
-            <%= link_to "login", user_session_path %>
-        <% end %>
-      </div>
+      <% if current_user %>
+          <%= current_user.email %>
+          (<%= link_to 'logout', destroy_user_session_path, method: :delete %>)
+      <% else%>
+          <%= link_to "login", user_session_path %>
+      <% end %>
+    </div>
   </div>
+</div>
