@@ -1,13 +1,21 @@
+<%if (can? :manage, Klass) || (can? :manage, Teacher)  || (can? :manage, Subject)%>
 <ul class="nav">
-    <li class="first <%if controller.controller_name == 'klasses' && controller.action_name == 'index'%>active<%end%>">
-      <%= link_to 'Classes',klasses_path %>
-    </li>
+    <%if can? :manage, Klass%>
+      <li class="first <%if controller.controller_name == 'klasses' && controller.action_name == 'index'%>active<%end%>">
+        <%= link_to 'Classes',klasses_path %>
+      </li>
+    <%end%>
 
-    <li class="<%if controller.controller_name == 'teachers' && controller.action_name == 'index'%>active<%end%>">
-      <%= link_to 'Teachers',teachers_path %>
-    </li>
+    <%if can? :manage, Teacher%>
+      <li class="<%if controller.controller_name == 'teachers' && controller.action_name == 'index'%>active<%end%>">
+        <%= link_to 'Teachers',teachers_path %>
+      </li>
+    <%end%>
 
-    <li class="<%if controller.controller_name == 'subjects' && controller.action_name == 'index'%>active<%end%>">
-      <%= link_to 'Subjects', subjects_path %>
-    </li>
+    <%if can? :manage, Subject%>
+      <li class="<%if controller.controller_name == 'subjects' && controller.action_name == 'index'%>active<%end%>">
+        <%= link_to 'Subjects', subjects_path %>
+      </li>
+    <%end%>
 </ul>
+<%end%>

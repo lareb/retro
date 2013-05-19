@@ -1,15 +1,20 @@
 <div id="header">
   <div class="header-container">
-    <div class="logo"><icon></icon>pathshaala</div>
+    <div class="logo"><icon></icon><bold style="font-weight: bold;">path</bold>shaala</div>
 
     <div class="user-navigation">
-
+      <div class="header-form">
       <% if current_user %>
-          <%= current_user.email %>
-          (<%= link_to 'logout', destroy_user_session_path, method: :delete %>)
+          <user><%= current_user.email %>&nbsp;(<%= link_to 'logout', destroy_user_session_path, method: :delete %>)</user>
       <% else%>
-          <%= link_to "login", user_session_path %>
+          <%= form_tag new_user_session_path do %>
+            <%= text_field_tag 'user[email]' %>
+            <%= password_field_tag 'user[password]' %>
+            <%=  submit_tag 'Login' %>
+          <%end%>
+          <%#= link_to "login", user_session_path %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

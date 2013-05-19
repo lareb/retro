@@ -9,8 +9,21 @@
 #Seed Klass data
 puts "Pushing Classes"
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE klasses")
-Klass.create!([{ :name => '1', :display_name => "1st"},{ :name => '2', :display_name => "2nd"},{ :name => '3', :display_name => "3rd"},{ :name => '4', :display_name => "4th"},
-               { :name => '5', :display_name => "5th"},{ :name => '6', :display_name => "6th"},{ :name => '7', :display_name => "7th"},{ :name => '8', :display_name => "8th"}])
+klasses = [{ :name => '1', :display_name => "1st", :max_studen_count => 60},{ :name => '2', :display_name => "2nd", :max_studen_count => 60},{ :name => '3', :display_name => "3rd", :max_studen_count => 60},{ :name => '4', :display_name => "4th", :max_studen_count => 60},
+               { :name => '5', :display_name => "5th", :max_studen_count => 60},{ :name => '6', :display_name => "6th", :max_studen_count => 60},{ :name => '7', :display_name => "7th", :max_studen_count => 60},{ :name => '8', :display_name => "8th", :max_studen_count => 60}]
+Klass.create!(klasses)
+
+puts "Pushing Shifts"
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE shifts")
+Shift.create([:name => "Morning Shift", :display_name => "Morning Shift", :start_time => "07:00:00", :end_time => "12:00:00"])
+
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE klass_shifts")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE sections")
+Klass.all.each do |klass|
+  KlassShift.create(:klass_id => klass.id, :shift_id => Shift.first)
+  Section.create([{:name => "A", :display_name => "A", :max_studen_count => 30, :klass_id => klass.id}, {:name => "B", :display_name => "B", :max_studen_count => 30, :klass_id => klass.id}])
+end
+
 
 #Seed Roles data
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")

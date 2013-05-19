@@ -19,8 +19,6 @@ body{
 /*    background-image: url(/assets/web/bg_pattern.png);*/
     padding: 0;
     margin: 0;
-    background-repeat:repeat;
-    background-color:#4E4E4E;
     font-family:'Arial',sans-serif;
     color:#000;
 }
@@ -29,10 +27,14 @@ a{
     text-decoration: none;
 }
 
+body.bg-wrapper{
+    background-image: url("/assets/web/url.jpg");
+    background-position: 120px 0;
+    background-repeat: repeat-x;
+}
+
 /*----------HEADER-------------*/
 #header{
-    background-color: #232323;
-    border-bottom: 1px solid #171717;
     clear: both;
     display: block;
     position: relative;
@@ -58,14 +60,13 @@ icon{
 }
 
 #header .logo{
-    color: #FFFFFF;
+    color: #000;
     float: left;
     font: 32px Tahoma,Arial,Sans-Serif;
     margin-top: 2%;
 }
 
 ul.nav{
-    background: none repeat scroll 0 0 #D7D7D7;
     height: 40px;
     list-style: none outside none;
     margin: 0;
@@ -103,16 +104,34 @@ breadcrumb a{
 #header .user-navigation{
     color: white;
     float: right;
-    margin-right: 15px;
-    margin-top: 60px;
 }
 
+.header-form{
+    margin-top: 25px;
+}
+
+.header-form input[type="text"], .header-form input[type="password"]{
+    border: 1px solid #C2C2C2;
+    height: 30px;
+}
+
+user, logout,
+.header-form input[type="submit"]{
+    background-color: #8E4C9B;
+    border: 0px;
+    border-bottom: 1px solid #8E4C9B;
+    font-size: 15px;
+    padding: 6px;
+}
+user a{
+    color: #fff;
+}
 span.check { background-image: url(/assets/web/check.png); height: 18px; width: 18px; display: block; margin: 0 auto;}
 
 /*------NAVIGATION---------*/
 .wrapper{
     margin: 0 auto;
-    min-height: 700px;
+    min-height: 668px;
     width: 88%;
 }
 
