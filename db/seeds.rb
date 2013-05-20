@@ -31,6 +31,12 @@ roles = [{:name => "admin", :display_name => "Admin"}, {:name => "teacher", :dis
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")
 Role.create(roles)
 
+#Create Admin User
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE users")
+admin = User.create!([:email => 'admin@pathshaala.com', :password => 'pathshaala123', :password_confirmation => 'pathshaala123'])
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_roles")
+UserRole.create([:user_id => User.first.id, :role_id => Role.first.id])
+
 #Seed Student data
 male_first_name = ["lareb", "nishant","mahendra", "rakesh","anil", "sunil","irfan", "suhel", "chandan",  "swapnil", "pankaj","joy", "kaustub", "debosis", "vinod", "jethalal", "atmaram",  "tarak", "gorvindar", "malkit", "surjeet", "mikhkha", "sandeep",
   "jugle", "hari", "rasiklal","mushtaq"]
