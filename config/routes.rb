@@ -1,4 +1,6 @@
 Pathshala::Application.routes.draw do
+
+
   get "home/index"
 
   #devise_for :users
@@ -20,7 +22,7 @@ Pathshala::Application.routes.draw do
     resources :students
     resources :teacher_klasses, :path => "teachers"
   end
-  
+  resources :admissions
   resources :roles, :only => [:index]
   
 
