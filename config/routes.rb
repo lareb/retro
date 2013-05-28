@@ -1,4 +1,6 @@
 Pathshala::Application.routes.draw do
+  get "dashboard/index"
+
   get "home/index"
 
   #devise_for :users
@@ -22,7 +24,7 @@ Pathshala::Application.routes.draw do
   end
   
   resources :roles, :only => [:index]
-  
+  resources :dashboard, :only => [:index]
 
   #match 'teachers/:id' => 'teacher#show'
 
