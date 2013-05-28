@@ -7,23 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
-  
+<body class="<%if current_user.nil?%>bg-wrapper<%end%>">
+
   <%= render :partial => "/layouts/header"%>
-  
+
   <div class="wrapper">
 
     <!-- <breadcrumb><%= raw @render_breadcrumb %></breadcrumb> -->
 
-    <div class="inner-box shadow">
-      <%= yield %>
-    </div>
-
-    <div class="sidebar shadow">
-      <%= render :partial => "/shared/sidebar" %>
-    </div>
-
-    
+    <%= yield %>
   </div>
 
 </body>
