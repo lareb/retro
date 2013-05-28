@@ -1,0 +1,73 @@
+<h1>Listing admissions</h1>
+
+<table>
+  <tr>
+    <th>Admission no</th>
+    <th>First name</th>
+    <th>Middle name</th>
+    <th>Last name</th>
+    <th>Guardian name</th>
+    <th>Relation</th>
+    <th>Guardian email</th>
+    <th>Occupation</th>
+    <th>Income</th>
+    <th>Education</th>
+    <th>Gender</th>
+    <th>Blood group</th>
+    <th>Birth place</th>
+    <th>Language</th>
+    <th>Religion</th>
+    <th>Address line1</th>
+    <th>Address line2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Pin code</th>
+    <th>Phone1</th>
+    <th>Phone2</th>
+    <th>Email</th>
+    <th>Photo filename</th>
+    <th>Photo content type</th>
+    <th>Status description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admissions.each do |admission| %>
+  <tr>
+    <td><%= admission.admission_no %></td>
+    <td><%= admission.first_name %></td>
+    <td><%= admission.middle_name %></td>
+    <td><%= admission.last_name %></td>
+    <td><%= admission.guardian_name %></td>
+    <td><%= admission.relation %></td>
+    <td><%= admission.guardian_email %></td>
+    <td><%= admission.occupation %></td>
+    <td><%= admission.income %></td>
+    <td><%= admission.education %></td>
+    <td><%= admission.gender %></td>
+    <td><%= admission.blood_group %></td>
+    <td><%= admission.birth_place %></td>
+    <td><%= admission.language %></td>
+    <td><%= admission.religion %></td>
+    <td><%= admission.address_line1 %></td>
+    <td><%= admission.address_line2 %></td>
+    <td><%= admission.city %></td>
+    <td><%= admission.state %></td>
+    <td><%= admission.pin_code %></td>
+    <td><%= admission.phone1 %></td>
+    <td><%= admission.phone2 %></td>
+    <td><%= admission.email %></td>
+    <td><%= admission.photo_filename %></td>
+    <td><%= admission.photo_content_type %></td>
+    <td><%= admission.status_description %></td>
+    <td><%= link_to 'Show', admission %></td>
+    <td><%= link_to 'Edit', edit_admission_path(admission) %></td>
+    <td><%= link_to 'Destroy', admission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admission', new_admission_path %>

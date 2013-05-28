@@ -22,7 +22,7 @@ Pathshala::Application.routes.draw do
     resources :students
     resources :teacher_klasses, :path => "teachers"
   end
-  
+  resources :admissions
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]
 
