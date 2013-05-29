@@ -1,5 +1,5 @@
 <%if (can? :manage, Klass) || (can? :manage, Teacher)  || (can? :manage, Subject) || (can? :manage, Admission)%>
-<h4>Quick Links</h4>
+<h4>Config</h4>
 <ul class="nav">
     <%if can? :manage, Klass%>
       <li class="first <%if controller.controller_name == 'klasses' && controller.action_name == 'index'%>active<%end%>">
