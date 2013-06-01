@@ -19,11 +19,17 @@
       </li>
     <%end%>
 
-  <%if can? :manage, Admission%>
-      <li class="<%if controller.controller_name == 'admissions' && controller.action_name == 'index'%>active<%end%>">
-        <%= link_to 'Admissions', admissions_path %>
-      </li>
-  <%end%>
+    <%if can? :manage, Course%>
+        <li class="<%if controller.controller_name == 'courses' && controller.action_name == 'index'%>active<%end%>">
+          <%= link_to 'Course', courses_path %>
+        </li>
+    <%end%>
+
+    <%if can? :manage, Admission%>
+        <li class="<%if controller.controller_name == 'admissions' && controller.action_name == 'index'%>active<%end%>">
+          <%= link_to 'Admissions', admissions_path %>
+        </li>
+    <%end%>
 
 </ul>
 <%end%>

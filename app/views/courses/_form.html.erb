@@ -1,0 +1,26 @@
+<%= simple_form_for(@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :name, :required => true %>
+    <%= f.input :display_name %>
+    <%= f.input :description %>
+    
+    <%#= simple_fields_for @course.course_timings.build do |f1| %>
+      <%#= f1.input :id, :as => :hidden, :value => @course_timing %>
+      <%#= f1.input :time_start %>
+      <%#= f1.input :time_end %>
+    <%#end%>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

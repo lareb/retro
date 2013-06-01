@@ -21,6 +21,10 @@ Pathshala::Application.routes.draw do
   resources :klasses do
     resources :students
     resources :teacher_klasses, :path => "teachers"
+    resources :sections
+  end
+  resources :courses do
+    resources :course_timings, :path => "timings"
   end
   resources :admissions
   resources :roles, :only => [:index]

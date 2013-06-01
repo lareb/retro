@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Section</th>
       <th>Teachers</th>
       <th>Add Teacher</th>
       <th>Students</th>
@@ -14,6 +15,7 @@
     <% @klasses.each do |klass| %>
       <tr class="<%= cycle("odd", "even") %>">
         <td><%= link_to klass.display_name, klass_students_path(klass) %></td>
+        <td><%= klass.sections.map(&:display_name).join(", ")%>&nbsp;(<%= link_to "+", new_klass_section_path(klass) %>)</td>
         <td><%= link_to 'Teachers (+)', "#", :class_id => klass.id, :class => "open" %></td>
         <td><%= link_to 'Add Teacher', new_klass_teacher_klass_path(klass) %></td>
         <td><%= link_to 'Students', klass_students_path(klass) %></td>

@@ -1,0 +1,28 @@
+<h1>Courses</h1>
+
+<table id="courses" class="display" >
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each_with_index do |course, index| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td><%= index + 1 %></td>
+        <td><%= course.display_name || course.name %></td>
+        <td><%= course.description %></td>
+        <td><%= raw get_time_in_format(course)%></td>
+        <td><%= link_to 'Edit', edit_course_path(course) %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<br />
+
+<%= link_to 'New Course', new_course_path %>
