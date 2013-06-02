@@ -1,19 +1,29 @@
-<%= simple_form_for @teacher_klass, :url => klass_teacher_klasses_path(@klass) do |f|  %>
-  <% if @teacher_klass.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@teacher_klass.errors.count, "error") %> prohibited this van from being saved:</h2>
+<div class="inner-box-container">
 
-      <ul>
-      <% @teacher_klass.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= simple_form_for @teacher_klass, :url => klass_teacher_klasses_path(@klass) do |f|  %>
+    <% if @teacher_klass.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@teacher_klass.errors.count, "error") %> prohibited this van from being saved:</h2>
+
+        <ul>
+        <% @teacher_klass.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.association :teacher, :label => "Teacher"%>
+    <%= f.input :is_class_teacher, :label => "Class Teacher"%>
+
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.button :submit, "Create" %>
+        <%= link_to 'Back', "#", :class => "link-button" %>
+      </div>
     </div>
+
   <% end %>
-
-  <%= f.association :teacher, :label => "Teacher"%>
-  <%#= f.input :klass, :label => "Class"%>
-  <%= f.input :is_class_teacher, :label => "Class Teacher"%>
-
-  <%= f.button :submit, "Create" %>
-<% end %>
+</div>

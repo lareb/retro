@@ -16,11 +16,11 @@
  */
 
 body{
-    background-image: url(/assets/web/strip-bg.png);
-    padding: 0;
+    background: -moz-linear-gradient(center top , #FBFBFB, #EEEEEE) repeat scroll 0 0 transparent;
+    color: #000000;
+    font-family: 'Arial',sans-serif;
     margin: 0;
-    font-family:'Arial',sans-serif;
-    color:#000;
+    padding: 0;
 }
 
 a{
@@ -76,9 +76,16 @@ ul.nav{
 ul.nav li{float: left}
 
 ul.nav li{
+    border-bottom: 1px double #FFFFFF;
     float: left;
+    margin: 0;
     padding: 3px 0;
-    width: 125px;
+    width: 100%;
+}
+
+ul.nav li a{
+    color: gray;
+    font-size: 12px;
 }
 
 .white-border {
@@ -138,7 +145,7 @@ span.check { background-image: url(/assets/web/check.png); height: 18px; width: 
 .wrapper h1{
     float: left;
     font-family: Eurostile,jura,Arial;
-    margin: 10px 0;
+    margin: 20px;
     width: auto;
     clear: both;
 }
@@ -249,7 +256,7 @@ table.display td {
 .inner-box{
     background-color: #E5E5E5;
     float: left;
-    height: 500px;
+    min-height: 500px;
     width: 78%;
 }
 
@@ -279,4 +286,60 @@ table.display td {
     -webkit-transform:rotate(180deg);
     -o-transform:rotate(180deg);
     transform:rotate(180deg);
+}
+
+.inner-box-container{
+    clear: left;
+    float: left;
+    width: 100%
+}
+
+.inner-box-container .input{
+    margin: 20px 0;
+}
+
+.inner-box-container label{
+    float: left;
+    font-size: 14px;
+    height: auto;
+    text-align: right;
+    width: 25%;
+}
+
+.inner-box-container input[type="text"],
+.inner-box-container input[type="number"],
+.inner-box-container input[type="email"],
+.inner-box-container input[type="password"],
+.inner-box-container textarea,
+.inner-box-container span.checkbox{
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    height: 30px;
+    margin-left: 10px;
+    padding-left: 5px;
+    width: 250px;
+}
+
+.inner-box-container a.link-button,
+.inner-box-container input[type="submit"]{
+    background-color: #74A948;
+    border: 1px solid #74A948;
+    border-radius: 3px 3px 3px 3px;
+    height: 30px;
+    margin-left: 10px;
+    padding-left: 5px;
+    text-transform: uppercase;
+    width: 115px;
+    color: #000;
+}
+
+a.link-button{
+    font-size: 11px;
+    padding: 9px 30px 6px !important;
+}
+
+.actions{
+    float: left;
+    margin-left: 35px;
+    width: auto;
 }

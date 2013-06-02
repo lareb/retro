@@ -1,29 +1,28 @@
-<%= form_for(@subject) do |f| %>
-  <% if @subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+<div class="inner-box-container">
+  <%= simple_form_for(@subject) do |f| %>
+    <% if @subject.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
 
-      <ul>
-      <% @subject.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+        <ul>
+        <% @subject.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :is_live, :as => :boolean %>
+
+
+      <div class="input">
+        <label>&nbsp;</label>
+        <div class="actions">
+          <%= f.submit %>
+          <%= link_to 'Back', subjects_path, :class => "link-button" %>
+        </div>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :is_live %><br />
-    <%= f.check_box :is_live %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

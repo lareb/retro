@@ -1,4 +1,4 @@
-<div class="form">
+<div class="inner-box-container">
   <%= simple_form_for(@teacher) do |f| %>
     <% if @teacher.errors.any? %>
       <div id="error_explanation">
@@ -22,6 +22,15 @@
       <%= user.input :password %>
       <%= user.input :password_confirmation %>
     <% end %>
-    <%= f.submit %>
+
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', teachers_path, :class => "link-button" %>
+      </div>
+    </div>
+
   <% end %>
 </div>

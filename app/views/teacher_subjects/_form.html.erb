@@ -1,19 +1,26 @@
-<%= simple_form_for(@teacher_subject, :url => teacher_teacher_subjects_path(@teacher)) do |f| %>
-  <% if @teacher_subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@teacher_subject.errors.count, "error") %> prohibited this teacher_subject from being saved:</h2>
+<div class="inner-box-container">
 
-      <ul>
-      <% @teacher_subject.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= simple_form_for(@teacher_subject, :url => teacher_teacher_subjects_path(@teacher)) do |f| %>
+    <% if @teacher_subject.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@teacher_subject.errors.count, "error") %> prohibited this teacher_subject from being saved:</h2>
+
+        <ul>
+        <% @teacher_subject.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.association :subject, :prompt => "Select", :collection => Subject.available_subjects(@teacher) %>
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', teacher_subjects_path, :class => "link-button" %>
+      </div>
     </div>
   <% end %>
-
-  <%= f.association :subject, :prompt => "Select", :collection => Subject.available_subjects(@teacher) %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

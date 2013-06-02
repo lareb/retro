@@ -1,20 +1,27 @@
-<%= simple_form_for(@course_timing, :url => course_course_timings_path(@course)) do |f| %>
-  <% if @course_timing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course_timing.errors.count, "error") %> prohibited this course from being saved:</h2>
+<div class="inner-box-container">
+  <%= simple_form_for(@course_timing, :url => course_course_timings_path(@course)) do |f| %>
+    <% if @course_timing.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@course_timing.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-      <% @course_timing.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+        <ul>
+        <% @course_timing.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.input :time_start %>
+    <%= f.input :time_end %>
+
+      <div class="input">
+        <label>&nbsp;</label>
+        <div class="actions">
+          <%= f.submit "Create" %>
+          <%= link_to 'Back', klasses_path, :class => "link-button" %>
+        </div>
+      </div>
+
   <% end %>
-
-  <%= f.input :time_start %>
-  <%= f.input :time_end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

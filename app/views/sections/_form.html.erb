@@ -1,30 +1,27 @@
+<div class="inner-box-container">
+  <%= simple_form_for(@section, :url => klass_sections_path(@klass)) do |f| %>
+    <% if @section.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
 
-<%= simple_form_for(@section, :url => klass_sections_path(@klass)) do |f| %>
-  <% if @section.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
+        <ul>
+        <% @section.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <% @section.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+      <%= f.input :name %>
+      <%= f.input :display_name %>
+      <%= f.input :max_studen_count %>
+
+      <div class="input">
+        <label>&nbsp;</label>
+        <div class="actions">
+          <%= f.submit %>
+          <%= link_to 'Back', klasses_path, :class => "link-button" %>
+        </div>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :display_name %><br />
-    <%= f.text_field :display_name %>
-  </div>
-  <div class="field">
-    <%= f.label :max_studen_count %><br />
-    <%= f.text_field :max_studen_count %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

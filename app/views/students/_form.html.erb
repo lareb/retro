@@ -1,73 +1,38 @@
-<%= form_for(@student) do |f| %>
-  <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+<div class="inner-box-container">
+  <%= simple_form_for(@student) do |f| %>
+    <% if @student.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
-      <ul>
-      <% @student.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+        <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :father_name %>
+      <%= f.input :mother_name %>
+      <%= f.input :local_guardian_name %>
+      <%= f.input :address_1 %>
+      <%= f.input :address_2 %>
+      <%= f.input :contact_no_1 %>
+      <%= f.input :contact_no_2 %>
+      <%= f.input :dob %>
+      <%= f.input :blood_group %>
+      <%= f.input :klass_id %>
+      <%= f.input :roll_no %>
+      <%= f.input :enrollment_no %>
+
+      <div class="input">
+        <label>&nbsp;</label>
+        <div class="actions">
+          <%= f.submit %>
+          <%= link_to 'Back', students_path, :class => "link-button" %>
+        </div>
+      </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :father_name %><br />
-    <%= f.text_field :father_name %>
-  </div>
-  <div class="field">
-    <%= f.label :mother_name %><br />
-    <%= f.text_field :mother_name %>
-  </div>
-  <div class="field">
-    <%= f.label :local_guardian_name %><br />
-    <%= f.text_field :local_guardian_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address_1 %><br />
-    <%= f.text_field :address_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :address_2 %><br />
-    <%= f.text_field :address_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_no_1 %><br />
-    <%= f.text_field :contact_no_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_no_2 %><br />
-    <%= f.text_field :contact_no_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :dob %><br />
-    <%= f.date_select :dob %>
-  </div>
-  <div class="field">
-    <%= f.label :blood_group %><br />
-    <%= f.text_field :blood_group %>
-  </div>
-  <div class="field">
-    <%= f.label :klass_id %><br />
-    <%= f.number_field :klass_id %>
-  </div>
-  <div class="field">
-    <%= f.label :roll_no %><br />
-    <%= f.text_field :roll_no %>
-  </div>
-  <div class="field">
-    <%= f.label :enrollment_no %><br />
-    <%= f.text_field :enrollment_no %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
