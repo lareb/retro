@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fancybox
 //= require dataTables/jquery.dataTables
 //= require_tree .
 
@@ -22,6 +23,19 @@ $(document).ready(function(){
           bJQueryUI: true,
           iDisplayLength: 25,
        	  aLengthMenu: [10, 25, 50, 100, 150]
+    });
+
+    $('.fancybox').fancybox({
+        padding : 0,
+        openEffect  : 'elastic',
+        helpers : {
+            overlay : {
+                css : {
+                    'border' : '2px red solid'
+                }
+            }
+        }
+
     });
 
     var spans = $(".teacher_subjects").find("span.checkbox");

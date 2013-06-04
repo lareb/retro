@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery.ui.core
  *= require jquery.ui.theme
+ *= require fancybox
  *= require dataTables/src/demo_table_jui
  *= require_tree .
  */
@@ -369,4 +370,8 @@ a.link-button{
     float: left;
     margin-left: 35px;
     width: auto;
+}
+
+table.display thead th{
+    font-size: 12px;
 }

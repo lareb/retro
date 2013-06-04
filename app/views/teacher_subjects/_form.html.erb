@@ -13,13 +13,13 @@
       </div>
     <% end %>
 
-    <%= f.association :subject, :prompt => "Select", :collection => Subject.available_subjects(@teacher) %>
+    <%= f.association :subjects, :collection => Subject.available_subjects(@teacher),:wrapper_html => {:class => "custom-ui-checkbox"}, :label => false %>
 
     <div class="input">
       <label>&nbsp;</label>
       <div class="actions">
         <%= f.submit %>
-        <%= link_to 'Back', teacher_subjects_path, :class => "link-button" %>
+        <%= link_to 'Back', teachers_path(), :class => "link-button" %>
       </div>
     </div>
   <% end %>

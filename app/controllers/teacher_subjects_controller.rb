@@ -20,7 +20,7 @@ class TeacherSubjectsController < ApplicationController
     #@teacher_subject = TeacherSubject.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @teacher_subject }
     end
   end
@@ -28,10 +28,8 @@ class TeacherSubjectsController < ApplicationController
   # GET /teacher_subjects/new
   # GET /teacher_subjects/new.json
   def new
-    #@teacher_subject = TeacherSubject.new
-
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => false}
       format.json { render json: @teacher_subject }
     end
   end

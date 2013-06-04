@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'fancybox-rails'
 #auth lib
 gem 'devise'
 # for role base authentication

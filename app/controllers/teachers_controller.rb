@@ -16,7 +16,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => !request.xhr?}
       format.json { render json: @teacher }
     end
   end
@@ -27,7 +27,14 @@ class TeachersController < ApplicationController
     @user = User.new
     @teacher = Teacher.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
+      format.json { render json: @teacher }
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.html { render :layout => !request.xhr?}
       format.json { render json: @teacher }
     end
   end
