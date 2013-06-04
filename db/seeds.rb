@@ -24,6 +24,10 @@ Klass.all.each do |klass|
   Section.create([{:name => "A", :display_name => "A", :max_studen_count => 30, :klass_id => klass.id}, {:name => "B", :display_name => "B", :max_studen_count => 30, :klass_id => klass.id}])
 end
 
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE higher_qualifications")
+higher_degree = HigherQualification.create([{:name =>"MBA"}, {:name =>"MCA"}, {:name =>"PhD"}, {:name =>"M.Sc"}, {:name =>"BCA"}, {:name =>"M. Phill"}])
+higher_degree = higher_degree.map(&:id)
+
 
 #Seed Roles data
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")
@@ -52,8 +56,6 @@ address_2 = ["m.g road", "a. b road", "palasya", "old palasiya", "sarafa", "kana
 
 male_title = ["Mr", "Dr"]
 female_title = ["Mrs", "Miss", "Dr"]
-higher_degree = ["MBA", "MCA", "PhD", "MSc", "BCA", "M Phill"]
-
 
 student_first_name = []
 student_father_name = []
@@ -103,14 +105,14 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE teachers")
 puts "-------- Inserting Teachers(male) information --------------"
 5.times do |index|
   Teacher.create!(:title => male_title[rand(2)], :first_name => "#{male_first_name[rand(male_first_name.length)]}", :last_name => "#{last_name[rand(last_name.length)]}",
-                  :higher_degree => higher_degree[rand(6)], :contact_no_1 => "#{prng.rand(21528950..29999999)}", :contact_no_1 => "#{prng.rand(21528950..29999999)}",
+                  :higher_qualification_id => higher_degree[rand(6)], :contact_no_1 => "#{prng.rand(21528950..29999999)}", :contact_no_1 => "#{prng.rand(21528950..29999999)}",
                   :address => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}")
 end
 
 puts "-------- Inserting Teachers(female) information --------------"
 5.times do |index|
   Teacher.create!(:title => female_title[rand(3)], :first_name => "#{female_first_name[rand(female_first_name.length)]}", :last_name => "#{last_name[rand(last_name.length)]}",
-                  :higher_degree => higher_degree[rand(6)], :contact_no_1 => "#{prng.rand(21528950..29999999)}", :contact_no_1 => "#{prng.rand(21528950..29999999)}",
+                  :higher_qualification_id => higher_degree[rand(6)], :contact_no_1 => "#{prng.rand(21528950..29999999)}", :contact_no_1 => "#{prng.rand(21528950..29999999)}",
                   :address => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}")
 end
 

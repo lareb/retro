@@ -18,7 +18,7 @@
         <td><%= link_to teacher.name, teacher_path(teacher) %></td>
         <td><%= teacher.subjects.map(&:name).join(", ") %>&nbsp;<%= link_to "Add (+)", new_teacher_teacher_subject_path(teacher) %></td>
         <td><%= link_to "Classes (+)", "#", :teacher_id => teacher.id, :class => "open" %></td>
-        <td><%= teacher.higher_degree %></td>
+        <td><%= teacher.higher_qualification.try(:name) %></td>
         <td><%= teacher.contact_no_2.nil? ? teacher.contact_no_1 : "#{teacher.contact_no_1 }, #{teacher.contact_no_2}" %></td>
         <td><%= teacher.user ? (link_to "Edit Account", edit_user_path(teacher.user)) : (link_to "Creat an Account", new_teacher_user_path(teacher)) %></td>
         <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>

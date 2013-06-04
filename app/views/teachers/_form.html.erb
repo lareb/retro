@@ -10,7 +10,7 @@
     <%= f.input :title, :as => :select, :collection => ["Mr", "Mrs", "Miss", "Dr"] %>
     <%= f.input :first_name, :as => :string, :required => true %>
     <%= f.input :last_name, :as => :string %>
-    <%= f.input :higher_degree, :as => :select, :collection => ["MBA", "MCA", "PhD", "MSc", "BCA", "M Phill", "Others"]%>
+    <%= f.association :higher_qualification%>
     <%= f.input :contact_no_1, :as => :string %>
     <%= f.input :contact_no_2, :as => :string %>
     <%= f.input :is_live, :as => :boolean, :label => "Live" %>

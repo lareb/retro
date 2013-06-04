@@ -6,7 +6,7 @@ class CreateTeachers < ActiveRecord::Migration
       t.string  :last_name, :limit => 45
       t.integer :user_id
       t.boolean :is_live, :default => true
-      t.string  :higher_degree
+      t.integer  :higher_qualification_id
       t.string  :contact_no_1
       t.string  :contact_no_2
       t.string  :address
