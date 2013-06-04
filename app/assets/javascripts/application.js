@@ -23,4 +23,11 @@ $(document).ready(function(){
           iDisplayLength: 25,
        	  aLengthMenu: [10, 25, 50, 100, 150]
     });
+
+    var spans = $(".teacher_subjects").find("span.checkbox");
+    spans.each(function(index){
+        if(index%2 == 1)
+            $(this).addClass("right");
+    });
+
 });

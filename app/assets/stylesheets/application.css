@@ -296,6 +296,7 @@ table.display td {
 
 .inner-box-container .input{
     margin: 20px 0;
+    clear: both;
 }
 
 .inner-box-container label{
@@ -311,13 +312,39 @@ table.display td {
 .inner-box-container input[type="email"],
 .inner-box-container input[type="password"],
 .inner-box-container textarea,
-.inner-box-container span.checkbox{
+.inner-box-container select{
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
     height: 30px;
     margin-left: 10px;
     padding-left: 5px;
     width: 250px;
+}
+
+.inner-box-container .check_boxes .checkbox label{
+    float: none !important;
+}
+
+.inner-box-container .check_boxes span.checkbox{
+    clear: left;
+    float: left;
+    margin-left: 218px;
+    min-width: 150px;
+}
+
+.inner-box-container .check_boxes span.left{
+    
+}
+
+.inner-box-container .check_boxes span.right{
+    clear: none;
+    margin-left: 0;
+}
+
+.inner-box-container input[type="checkbox"]{
+    height: 18px;
+    margin-left: 12px;
+    width: 18px;
 }
 
 .inner-box-container a.link-button,
