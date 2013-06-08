@@ -1,4 +1,4 @@
-<div class="inner-box-container">
+<div class="inner-box-container adjustive">
   <%= simple_form_for(@admission) do |f| %>
     <% if @admission.errors.any? %>
       <div id="error_explanation">
@@ -12,49 +12,50 @@
       </div>
     <% end %>
 
-    Step 1
-    <%= f.input :student_first_name %>
-    <%= f.input :student_middle_name %>
-    <%= f.input :student_last_name %>
-    <%= f.input :date_of_birth, :as => :string %>
-    <%= f.input :gender %>
-    <%= f.input :admission_batch_id %>
+    <%unless params[:step] == "2"%>
+      <%= f.input :student_first_name %>
+      <%= f.input :student_middle_name%>
+      <%= f.input :student_last_name%>
+      <%= f.input :date_of_birth, :as => :string, :input_html => {:class => "datepicker"}%>
+      <%= f.input :gender %>
+      <%= f.association :admission_batch, label_method: :display_name %>
 
-    <%= f.input :father_name %>
-    <%= f.input :mother_name %>
-    <%= f.input :local_guardian_name %>
-    <%= f.input :relation_with_student %>
+      <%= f.input :father_name %>
+      <%= f.input :mother_name %>
+      <%= f.input :local_guardian_name %>
+      <%= f.input :relation_with_student %>
 
-    <%= f.input :last_batch %>
-    <%= f.input :last_batch_result %>
-    <%= f.input :last_batch_result_in_per %>
-    <%= f.input :last_institution %>
-    <%= f.input :last_academic_year %>
+      <%= f.association :last_klass %>
+      <%= f.input :last_batch_result %>
+      <%= f.input :last_batch_result_in_per %>
+      <%= f.input :last_institution %>
+      <%= f.input :last_academic_year %>
+    <%else%>
+      <%= f.input :address_line1 %>
+      <%= f.input :address_line2 %>
+      <%= f.input :city %>
+      <%= f.input :state %>
+      <%= f.input :zip %>
+      <%= f.input :country_id %>
+      <%= f.input :phone1 %>
+      <%= f.input :phone2 %>
+      <%= f.input :immediate_contact %>
+      <%= f.input :guardian_email %>
 
+      <%= f.input :birth_place %>
+      <%= f.input :nationality_id %>
+      <%= f.input :mother_language %>
+      <%= f.input :religion %>
 
-    Step 2
-    <%= f.input :address_line1 %>
-    <%= f.input :address_line2 %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :zip %>
-    <%= f.input :country_id %>
-    <%= f.input :phone1 %>
-    <%= f.input :phone2 %>
-    <%= f.input :immediate_contact %>
-    <%= f.input :guardian_email %>
+      <%= f.input :student_category %>
+      <%= f.input :blood_group %>
 
-    <%= f.input :birth_place %>
-    <%= f.input :nationality_id %>
-    <%= f.input :mother_language %>
-    <%= f.input :religion %>
+      <%= f.input :occupation %>
+      <%= f.input :income %>
+      <%= f.input :education %>
+    <%end%>
 
-    <%= f.input :student_category %>
-    <%= f.input :blood_group %>
-
-    <%= f.input :occupation %>
-    <%= f.input :income %>
-    <%= f.input :education %>
+    <input type="hidden" value="<%= params[:step] %>" name="step" />
 
     <div class="input">
       <label>&nbsp;</label>

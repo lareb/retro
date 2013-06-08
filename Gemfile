@@ -47,3 +47,5 @@ gem 'awesome_print'
 
 # To use debugger
 # gem 'debugger'
+gem 'therubyracer'
+gem "kaminari"

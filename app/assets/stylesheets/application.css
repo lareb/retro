@@ -12,6 +12,7 @@
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require fancybox
+ *= require jquery.ui.datepicker
  *= require dataTables/src/demo_table_jui
  *= require_tree .
  */
@@ -311,6 +312,7 @@ table.display td {
 .inner-box-container input[type="text"],
 .inner-box-container input[type="number"],
 .inner-box-container input[type="email"],
+.inner-box-container input[type="tel"],
 .inner-box-container input[type="password"],
 .inner-box-container textarea,
 .inner-box-container select{
@@ -375,3 +377,53 @@ a.link-button{
 table.display thead th{
     font-size: 12px;
 }
+
+.detailed-view p.message{
+    background: none repeat scroll 0 0 #F2F2F2;
+    border-radius: 15px 15px 15px 15px;
+    color: black;
+    font-size: 20px;
+    font-style: italic;
+    margin: 40px;
+    padding: 20px;
+}
+
+.button{
+    background: none repeat scroll 0 0 #D44A3A;
+    border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    max-width: 150px;
+    opacity: 1;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.2s ease 0s;
+    width: 100%;
+}
+
+.right{float: right}
+.left{float: left}
+
+.buttons-full-page{
+    margin-top: 225px;
+    padding: 0 60px;
+}
+
+
+/*
+.adjustive .input{
+    float: left;
+}
+
+.adjustive input[type="text"],
+.adjustive input[type="number"],
+.adjustive input[type="email"],
+.adjustive input[type="password"],
+.adjustive textarea,
+.adjustive select{
+    width: 120px !important;
+}*/

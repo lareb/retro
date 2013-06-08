@@ -16,6 +16,7 @@ class AdmissionsController < ApplicationController
   # GET /admissions/1
   # GET /admissions/1.json
   def show
+    @completed = params[:step] == "2" ? true : false
     @admission = Admission.find(params[:id])
 
     respond_to do |format|
@@ -48,7 +49,7 @@ class AdmissionsController < ApplicationController
 
     respond_to do |format|
       if @admission.save
-        format.html { redirect_to @admission, notice: 'Admission was successfully created.' }
+        format.html { redirect_to edit_admission_path(@admission, :step => 2), notice: 'Admission was successfully created.' }
         format.json { render json: @admission, status: :created, location: @admission }
       else
         format.html { render action: "new" }
@@ -61,10 +62,10 @@ class AdmissionsController < ApplicationController
   # PUT /admissions/1.json
   def update
     @admission = Admission.find(params[:id])
-
+    next_step = params[:step] == "2" ? @admission : edit_admission_path(@admission, :step => 2)
     respond_to do |format|
       if @admission.update_attributes(params[:admission])
-        format.html { redirect_to @admission, notice: 'Admission was successfully updated.' }
+        format.html { redirect_to next_step, notice: 'Admission was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,4 +85,35 @@ class AdmissionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def review
+    sort_fields = [:order_number]
+    q, per, page, sort, sort_direction = datatable_params(params[:sSearch],
+                                                               params[:iDisplayLength],
+                                                               params[:iDisplayStart],
+                                                               params[:iSortingCols],
+                                                               params[:iSortCol_0],
+                                                               params[:sSortDir_0],
+                                                               sort_fields)
+
+    search_conditions = "admissions.student_first_name like '%#{q}%' OR
+                        admissions.student_middle_name like '%#{q}%' OR
+                        admissions.student_last_name like '%#{q}%' OR
+                        admissions.admission_no like '%#{q}%' OR
+                        admissions.father_name like '%#{q}%' OR
+                        admissions.mother_name like '%#{q}%' OR
+                        admissions.local_guardian_name like '%#{q}%' OR
+                        admissions.student_category like '%#{q}%' OR
+                        admissions.city like '%#{q}%' OR
+                        admissions.address_line1 like '%#{q}%' OR
+                        admissions.address_line2 like '%#{q}%'"
+    @admissions = Admission.page(page).per(per).where(search_conditions)
+    @total = Admission.where(search_conditions).count.ceil
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
 end

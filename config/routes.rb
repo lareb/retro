@@ -26,7 +26,11 @@ Pathshala::Application.routes.draw do
   resources :courses do
     resources :course_timings, :path => "timings"
   end
-  resources :admissions
+  resources :admissions do
+    collection do
+      get "review"
+    end
+  end
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]
 

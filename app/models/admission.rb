@@ -5,5 +5,15 @@ class Admission < ActiveRecord::Base
     :guardian_email, :occupation, :income, :education, :blood_group, :birth_place, :status_description, :is_active, :is_deleted, :former_id, 
     :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year
 
-  belongs_to :klass, :foreign_key => :admission_batch_id
+  belongs_to :admission_batch, :foreign_key => :admission_batch_id, :class_name => Klass
+  belongs_to :last_klass, :foreign_key => :last_batch, :class_name => Klass
+
+  def admission_no
+      Time.now.strftime("#{CODE}-%d%m%Y#{self.id}").upcase
+  end
+
+  def name
+    [self.student_first_name.try(:capitalize), self.student_middle_name.blank? ? nil : self.student_middle_name.try(:capitalize), self.student_last_name.try(:capitalize)].compact.join(" ")
+  end
+
 end

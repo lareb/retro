@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout "application"
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
   def breadcrumb_path(path)
     root_path = {:home => "/"}
     path = {} if path.nil?
@@ -19,6 +23,25 @@ class ApplicationController < ActionController::Base
     end
 
     return links.join("&nbsp;&#187;&nbsp;")
+  end
+
+  protected
+  def datatable_params(sSearch, iDisplayLength,  iDisplayStart, iSortingCols, iSortCol_0, sSortDir_0, sort_fields)
+
+    per = iDisplayLength.nil? ? 10 : iDisplayLength
+    page = iDisplayStart.nil? ? nil : (iDisplayStart.to_i/iDisplayLength.to_i)+1
+
+    #Sorting
+    if iSortingCols && iSortingCols != "0"
+      sort = sort_fields[iSortCol_0.to_i]
+    else
+      sort = nil
+    end
+
+    sort_direction = sSortDir_0.present? ? sSortDir_0.to_sym : nil
+
+    Rails.logger.debug("\n\nsSearch: #{sSearch}, per_page: #{per}, page: #{page}, sort: #{sort}, sort_direction: #{sort_direction}\n\n")
+    return sSearch, per, page, sort, sort_direction
   end
 
 end

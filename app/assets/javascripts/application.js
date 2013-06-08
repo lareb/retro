@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require fancybox
+//= require jquery.ui.datepicker
 //= require dataTables/jquery.dataTables
 //= require_tree .
-
 
 $(document).ready(function(){
     $('.data-table').dataTable({
@@ -24,6 +24,8 @@ $(document).ready(function(){
           iDisplayLength: 25,
        	  aLengthMenu: [10, 25, 50, 100, 150]
     });
+
+    $(".datepicker").datepicker();
 
     $('.fancybox').fancybox({
         padding : 0,

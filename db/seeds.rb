@@ -56,7 +56,7 @@ address_2 = ["m.g road", "a. b road", "palasya", "old palasiya", "sarafa", "kana
 
 male_title = ["Mr", "Dr"]
 female_title = ["Mrs", "Miss", "Dr"]
-
+school_name = ["Shishu Vihar H.S School", "St Xaviour H.S. School", "Sambhaji rao H.S. School", "St Paul H.S School", "Indore Public H.S.School", "DPS", "IPS", "Bhavan's School"]
 student_first_name = []
 student_father_name = []
 student_mother_name = []
@@ -122,4 +122,39 @@ subjects = ["Hindi", "English", "Physics", "Arts", "Social Science", "Science", 
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE subjects")
 subjects.each do |subject|
   Subject.create!(:name => subject, :description => subject, :is_live => true)
+end
+
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE admissions")
+100.times do |index|
+  #student first and last name
+  student_first_name = "#{male_first_name[rand(male_first_name.length)]}"
+  std_last_name = "#{last_name[rand(last_name.length)]}"
+
+  #student's father's name
+  student_father_name = "#{male_first_name[rand(male_first_name.length)]} #{std_last_name}"
+
+  #student's mother name
+  student_mother_name = "#{female_first_name[rand(female_first_name.length)]} #{std_last_name}"
+
+  puts "Admission-----------#{student_first_name} #{std_last_name}"
+  klass = prng.rand(0..7)
+  Admission.create!({:admission_no => Time.now.strftime("#{CODE}-%d%m%Y#{index+1}").upcase, :admission_batch_id => klass + 1,:student_first_name => student_first_name, :student_last_name => std_last_name, :father_name => student_father_name, :mother_name => student_mother_name,
+    :last_batch => klass, :last_batch_result => "pass", :last_batch_result_in_per => prng.rand(40..98), :last_institution => "#{school_name[rand(school_name.length)]}", :last_academic_year => 2012,:address_line1 => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}", :address_line2 => "#{address_2[rand(address_2.length)]}", :city => "indore", :state => "MP", :zip => "454001",
+    :phone1 => "#{prng.rand(21528950..29999999)}", :date_of_birth => Date.parse("#{prng.rand(1..28)}-#{prng.rand(1..12)}-#{prng.rand(1996..2001)}"), :gender => "male"})
+  #--------------------------------------------------------------------------------------
+  #FEMALE STUDENT
+
+  student_first_name = "#{female_first_name[rand(female_first_name.length)]}"
+  std_last_name = "#{last_name[rand(last_name.length)]}"
+
+  #student's father's name
+  student_father_name = "#{male_first_name[rand(male_first_name.length)]} #{std_last_name}"
+
+  #student's mother name
+  student_mother_name = "#{female_first_name[rand(female_first_name.length)]} #{std_last_name}"
+
+  puts "Admission-----------#{student_first_name} #{std_last_name}"
+  Admission.create!({:admission_no => Time.now.strftime("#{CODE}-%d%m%Y#{index+1}").upcase, :admission_batch_id => klass + 1, :student_first_name => student_first_name, :student_last_name => std_last_name, :father_name => student_father_name, :mother_name => student_mother_name,
+    :last_batch => klass, :last_batch_result => "pass", :last_batch_result_in_per => prng.rand(40..98), :last_institution => "#{school_name[rand(school_name.length)]}", :last_academic_year => 2012,:address_line1 => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}", :address_line2 => "#{address_2[rand(address_2.length)]}", :city => "indore", :state => "MP", :zip => "454001",
+    :phone1 => "#{prng.rand(21528950..29999999)}", :date_of_birth => Date.parse("#{prng.rand(1..28)}-#{prng.rand(1..12)}-#{prng.rand(1996..2001)}"), :gender => "male"})
 end

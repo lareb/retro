@@ -16,7 +16,7 @@ class CreateAdmissions < ActiveRecord::Migration
       t.string      :local_guardian_name
       t.string      :relation_with_student #for local guardian
 
-      t.string      :last_batch #as string
+      t.integer     :last_batch #as string
       t.string      :last_batch_result #boolean pass or fail or supplementary
       t.string      :last_batch_result_in_per
       t.string      :last_institution
