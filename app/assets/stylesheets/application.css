@@ -413,6 +413,26 @@ table.display thead th{
     padding: 0 60px;
 }
 
+.review-filter{
+    border: 1px solid white;
+    border-radius: 5px 5px 5px 5px;
+    clear: both;
+    float: left;
+    margin: 15px 0;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.review-filter .filter{
+    float: left;
+    margin-right: 50px;
+}
+
+.review-filter input[type="button"]{
+    margin-left: 30px;
+    margin-top: -3px;
+    padding: 6px !important;
+}
 
 /*
 .adjustive .input{

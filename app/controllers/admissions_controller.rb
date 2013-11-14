@@ -87,6 +87,8 @@ class AdmissionsController < ApplicationController
   end
 
   def review
+    @search = Klass.new
+    
     sort_fields = [:order_number]
     q, per, page, sort, sort_direction = datatable_params(params[:sSearch],
                                                                params[:iDisplayLength],
@@ -96,7 +98,7 @@ class AdmissionsController < ApplicationController
                                                                params[:sSortDir_0],
                                                                sort_fields)
 
-    search_conditions = "admissions.student_first_name like '%#{q}%' OR
+    search_conditions = "(admissions.student_first_name like '%#{q}%' OR
                         admissions.student_middle_name like '%#{q}%' OR
                         admissions.student_last_name like '%#{q}%' OR
                         admissions.admission_no like '%#{q}%' OR
@@ -106,11 +108,19 @@ class AdmissionsController < ApplicationController
                         admissions.student_category like '%#{q}%' OR
                         admissions.city like '%#{q}%' OR
                         admissions.address_line1 like '%#{q}%' OR
-                        admissions.address_line2 like '%#{q}%'"
-    @admissions = Admission.page(page).per(per).where(search_conditions)
-    @total = Admission.where(search_conditions).count.ceil
+                        admissions.address_line2 like '%#{q}%')"
+
+    #search_conditions = params[:klass].present? ? "#{search_conditions} AND last_batch_result_in_per <= #{params[:klass]}" : search_conditions
+    #search_conditions = params[:percentage].present? ? "#{search_conditions} AND last_batch_result_in_per <= #{params[:percentage]}" : search_conditions
+
+    if(params[:klass].present? && params[:percentage].present?)
+      search_conditions = "#{search_conditions} AND last_batch_result_in_per <= #{params[:percentage]} AND admission_batch_id = #{params[:klass]}"    
+      @admissions = Admission.page(page).per(per).where(search_conditions)
+      @total = Admission.where(search_conditions).count.ceil
+    end
 
     respond_to do |format|
+      format.js
       format.html
       format.json
     end

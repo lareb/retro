@@ -1,51 +1,35 @@
 <h1>Admissions</h1>
 
-<table id="admissions" class="display">
-  <thead>
-  <tr>
-    <th>Admission no</th>
-    <th>Student Name</th>
-    <th>Guardian Name</th>
-    <th>Admission batch</th>
-    <th>Last Class</th>
-    <th>Last School/Institute</th>
-    <th>Last Class Result</th>
-    <th>Edit info</th>
-  </tr>
-  </thead>
-  <tbody>
-<% @admissions.each do |admission| %>
-  <tr>
-    <td><%= link_to admission.admission_no, admission_path(admission) %></td>
-    <td><%= admission.name %></td>
-    <td><%= admission.father_name %></td>
-    <td><%= admission.admission_batch.display_name %></td>
-    <td><%= admission.last_klass.display_name %></td>
-    <td><%= admission.last_institution %></td>
-    <td><%= admission.last_batch_result_in_per %></td>
-    <td><%= link_to 'Edit', edit_admission_path(admission) %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+<div class="review-filter">
+  <%= form_tag(review_admissions_path, :remote => true, :method => :get, :'data-update-target' => 'filter-data') do %>
+    <div class="filter">
+      <label>Class</label> <%= select_tag :klass, options_from_collection_for_select(Klass.all, "id", "display_name")%>
+    </div>
 
+    <div style="float: left">
+      <label>Percentage (%)</label>
+      <input type="radio" name="percentage" value="50"/><label>upto 50%</label>
+      <input type="radio" name="percentage" value="60"/><label>upto 60%</label>
+      <input type="radio" name="percentage" value="75"/><label>upto 75%</label>
+      <input type="radio" name="percentage" value="85"/><label>upto 85%</label>
+      <input type="radio" name="percentage" value="99"/><label>upto 99%</label>
+    </div>
+
+    <input type="submit" value="Filter" class="button" />
+
+  <%end%>
+</div>
+
+
+<div id="filter-data">
+
+</div>
 <%= link_to 'New Admission', new_admission_path %>
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-     oTable =  $('#admissions').dataTable(
-              {
-                "bServerSide":true,
-                "bProcessing":true,
-                "sAjaxSource":"<%= review_admissions_path()%>",
-                "sPaginationType": "full_numbers",
-                "bJQueryUI": true,
-                "iDisplayLength": 10,
-                "aLengthMenu": [10, 25, 50, 100, 150],
-                "aoColumnDefs":[{"bSortable":false, "aTargets":[7]}]
-              }
-      );
+<script type="text/javascript">
+/*  $(document).ready(function () {
+    $("#review_admission_filter").submit(function(){
 
-
-    });
-  </script>
+    })
+  })*/
+</script>

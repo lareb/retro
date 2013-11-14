@@ -4,8 +4,8 @@ aaData = [];
     link_to(admission.admission_no, admission_path(admission)),
     admission.name,
     admission.father_name,
-    admission.admission_batch.display_name,
-    admission.last_klass.display_name,
+    admission.admission_batch.try(:display_name),
+    admission.last_klass.try(:display_name),
     admission.last_institution,
     admission.last_batch_result_in_per,
     link_to('Edit', edit_admission_path(admission))
