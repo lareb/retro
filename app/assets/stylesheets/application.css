@@ -434,6 +434,32 @@ table.display thead th{
     padding: 6px !important;
 }
 
+.left-sec{
+    border: 1px solid #FF0000;
+    float: left;
+    width: 48%;
+}
+
+.left-sec .student-pic{
+    border: 1px solid #000000;
+    clear: both;
+    float: left;
+    height: 200px;
+    width: 175px;
+}
+
+.left-sec .student-basic-info{
+    clear: both;
+    float: left;
+}
+
+.right-sec{
+    border: 1px solid #008000;
+    float: right;
+    height: 100%;
+    min-height: 490px;
+    width: 50%;
+}
 /*
 .adjustive .input{
     float: left;

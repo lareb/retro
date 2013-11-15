@@ -7,7 +7,7 @@ Class <%=@admission.last_klass.display_name%> from <%=@admission.last_institutio
 
   <div class="buttons-full-page" style="padding: 0px 60px;">
     <%= link_to "Home", root_path, :class => "button" %>
-    <%= link_to "Admission Review", review_admissions_path, :class => "button right" %>
+    <%= link_to "Admission Review", review_admission_path(@admission), :class => "button right" %>
   </div>
 
 </div>

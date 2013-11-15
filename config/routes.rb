@@ -30,6 +30,9 @@ Pathshala::Application.routes.draw do
     collection do
       get "review"
     end
+    member do
+      get "review", :to => "admissions#student_review"
+    end
   end
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]

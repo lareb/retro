@@ -126,4 +126,8 @@ class AdmissionsController < ApplicationController
     end
   end
 
+  def student_review
+    @admission = Admission.find(params[:id])
+  end
+
 end
