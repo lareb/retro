@@ -1,6 +1,6 @@
 <%if (can? :manage, Klass) || (can? :manage, Teacher)  || (can? :manage, Subject) || (can? :manage, Admission)%>
-<h4>Config</h4>
-<ul class="nav">
+  <h4>Config</h4>
+  <ul class="nav">
     <%if can? :manage, Klass%>
       <li class="first <%if controller.controller_name == 'klasses' && controller.action_name == 'index'%>active<%end%>">
         <%= link_to 'Classes',klasses_path %>
@@ -31,5 +31,11 @@
         </li>
     <%end%>
 
-</ul>
+    <%if can? :manage, Admission%>
+        <li class="<%if controller.controller_name == 'admissions' && controller.action_name == 'review'%>active<%end%>">
+          <%= link_to 'Admission Review', review_admissions_path() %>
+        </li>
+    <%end%>
+
+  </ul>
 <%end%>

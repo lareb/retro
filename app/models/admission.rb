@@ -5,6 +5,8 @@ class Admission < ActiveRecord::Base
     :guardian_email, :occupation, :income, :education, :blood_group, :birth_place, :status_description, :is_active, :is_deleted, :former_id, 
     :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year
 
+  has_one :asset, :as => :attachable #, :dependent =>:destroy
+  
   belongs_to :admission_batch, :foreign_key => :admission_batch_id, :class_name => Klass
   belongs_to :last_klass, :foreign_key => :last_batch, :class_name => Klass
 

@@ -1,5 +1,5 @@
 <div class="inner-box-container adjustive">
-  <%= simple_form_for(@admission) do |f| %>
+  <%= simple_form_for(@admission, :html => { :multipart => true}) do |f| %>
     <% if @admission.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@admission.errors.count, "error") %> prohibited this admission from being saved:</h2>
@@ -13,54 +13,66 @@
     <% end %>
 
     <%unless params[:step] == "2"%>
-      <%= f.input :student_first_name %>
-      <%= f.input :student_middle_name%>
-      <%= f.input :student_last_name%>
-      <%= f.input :date_of_birth, :as => :string, :input_html => {:class => "datepicker"}%>
-      <%= f.input :gender %>
-      <%= f.association :admission_batch, label_method: :display_name %>
+      <div class="left-sec">
+        <%= f.input :student_first_name %>
+        <%= f.input :student_middle_name%>
+        <%= f.input :student_last_name%>
+        <%= f.input :date_of_birth, :as => :string, :input_html => {:class => "datepicker"}%>
+        <%= f.input :gender %>
+        <%= f.association :admission_batch, label_method: :display_name %>
+        <%= f.input :father_name %>
+        <%= f.input :mother_name %>
+      </div>
+  
+      <div class="right-sec">
 
-      <%= f.input :father_name %>
-      <%= f.input :mother_name %>
-      <%= f.input :local_guardian_name %>
-      <%= f.input :relation_with_student %>
 
-      <%= f.association :last_klass %>
-      <%= f.input :last_batch_result %>
-      <%= f.input :last_batch_result_in_per %>
-      <%= f.input :last_institution %>
-      <%= f.input :last_academic_year %>
+        <div class="input string optional">
+          <label for="admission_birth_place" class="string optional">Birth place</label>
+          <input type="file" name="assets[data]" id="admission_asset" class="string optional"/>
+        </div>
+
+        <%= f.input :local_guardian_name %>
+        <%= f.input :relation_with_student %>
+
+        <%= f.association :last_klass %>
+        <%= f.input :last_batch_result %>
+        <%= f.input :last_batch_result_in_per %>
+        <%= f.input :last_institution %>
+        <%= f.input :last_academic_year %>
+      </div>
     <%else%>
-      <%= f.input :address_line1 %>
-      <%= f.input :address_line2 %>
-      <%= f.input :city %>
-      <%= f.input :state %>
-      <%= f.input :zip %>
-      <%= f.input :country_id %>
-      <%= f.input :phone1 %>
-      <%= f.input :phone2 %>
-      <%= f.input :immediate_contact %>
-      <%= f.input :guardian_email %>
-
-      <%= f.input :birth_place %>
-      <%= f.input :nationality_id %>
-      <%= f.input :mother_language %>
-      <%= f.input :religion %>
-
-      <%= f.input :student_category %>
-      <%= f.input :blood_group %>
-
-      <%= f.input :occupation %>
-      <%= f.input :income %>
-      <%= f.input :education %>
+      <div class="left-sec">
+        <%= f.input :address_line1 %>
+        <%= f.input :address_line2 %>
+        <%= f.input :city %>
+        <%= f.input :state %>
+        <%= f.input :zip %>
+        <%= f.input :country_id %>
+        <%= f.input :phone1 %>
+        <%= f.input :phone2 %>
+        <%= f.input :immediate_contact %>
+        <%= f.input :guardian_email %>
+      </div>
+      <div class="right-sec">
+        <%= f.input :birth_place %>
+        <%= f.input :nationality_id %>
+        <%= f.input :mother_language %>
+        <%= f.input :religion %>
+        <%= f.input :student_category %>
+        <%= f.input :blood_group %>
+        <%= f.input :occupation %>
+        <%= f.input :income %>
+        <%= f.input :education %>
+      </div>
     <%end%>
 
     <input type="hidden" value="<%= params[:step] %>" name="step" />
 
     <div class="input">
       <label>&nbsp;</label>
-      <div class="actions">
-        <%= f.submit "Create" %>
+      <div class="actions right-sec">
+        <%= f.submit (controller.action_name == "new" ? "Create" : "Update") %>
         <%= link_to 'Back', klasses_path, :class => "link-button" %>
       </div>
     </div>

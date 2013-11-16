@@ -46,15 +46,31 @@ class AdmissionsController < ApplicationController
   # POST /admissions.json
   def create
     @admission = Admission.new(params[:admission])
+    begin
+      Admission.transaction do
+        #Student pic upload
+        puts "------------------------#{params[:assets]}"
+        if params[:assets]
+          puts "========234243223=========="
+          asset = Asset.create(params[:assets])
+          params[:admission][:asset] = asset 
+        end
 
-    respond_to do |format|
-      if @admission.save
-        format.html { redirect_to edit_admission_path(@admission, :step => 2), notice: 'Admission was successfully created.' }
-        format.json { render json: @admission, status: :created, location: @admission }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @admission.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @admission.save
+            format.html { redirect_to edit_admission_path(@admission, :step => 2), notice: 'Admission was successfully created.' }
+            format.json { render json: @admission, status: :created, location: @admission }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @admission.errors, status: :unprocessable_entity }
+          end
+        end
       end
+    rescue Exception => e
+      ap e.message
+      ap e.backtrace.inspect
+      render action: "new"
+      return
     end
   end
 
@@ -63,15 +79,35 @@ class AdmissionsController < ApplicationController
   def update
     @admission = Admission.find(params[:id])
     next_step = params[:step] == "2" ? @admission : edit_admission_path(@admission, :step => 2)
-    respond_to do |format|
-      if @admission.update_attributes(params[:admission])
-        format.html { redirect_to next_step, notice: 'Admission was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @admission.errors, status: :unprocessable_entity }
+
+    #begin
+      Admission.transaction do
+        #Student pic upload
+        puts "------------------------#{params[:assets]}"
+        if @admission.asset.nil?
+          asset = Asset.create(params[:assets])
+        else
+          @admission.asset.update_attributes(params[:assets])
+          asset = @admission.asset
+        end
+        respond_to do |format|
+          if @admission.update_attributes(params[:admission])
+            format.html { redirect_to next_step, notice: 'Admission was successfully updated.' }
+            format.json { head :no_content }
+          else
+            format.html { render action: "edit" }
+            format.json { render json: @admission.errors, status: :unprocessable_entity }
+          end
+        end
       end
-    end
+    #rescue Exception => e
+    #  puts "----------------------xxx-----------------------"
+    #  ap e.message
+    #  ap e.backtrace.inspect
+    #  render action: "edit"
+    #  return
+    #end
+
   end
 
   # DELETE /admissions/1

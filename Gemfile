@@ -49,3 +49,5 @@ gem 'awesome_print'
 # gem 'debugger'
 gem 'therubyracer'
 gem "kaminari"
+
+gem "paperclip", "~> 3.0"

@@ -1,18 +1,17 @@
-<h1>Admissions</h1>
+<h1>Admission Review</h1>
 
 <div class="review-filter">
   <%= form_tag(review_admissions_path, :remote => true, :method => :get, :'data-update-target' => 'filter-data') do %>
     <div class="filter">
-      <label>Class</label> <%= select_tag :klass, options_from_collection_for_select(Klass.all, "id", "display_name")%>
-    </div>
-
-    <div style="float: left">
-      <label>Percentage (%)</label>
-      <input type="radio" name="percentage" value="50"/><label>upto 50%</label>
-      <input type="radio" name="percentage" value="60"/><label>upto 60%</label>
-      <input type="radio" name="percentage" value="75"/><label>upto 75%</label>
-      <input type="radio" name="percentage" value="85"/><label>upto 85%</label>
-      <input type="radio" name="percentage" value="99"/><label>upto 99%</label>
+      <%= select_tag :klass, options_from_collection_for_select(Klass.all, "id", "display_name"), :prompt => "Select Class"%>
+      <select name="percentage" class="select">
+        <option value="99">Select %</option>
+        <option value="50">upto 50%</option>
+        <option value="60">upto 60%</option>
+        <option value="75">upto 75%</option>
+        <option value="85">upto 85%</option>
+        <option value="99">upto 99%</option>
+      </select>
     </div>
 
     <input type="submit" value="Filter" class="button" />
@@ -24,12 +23,3 @@
 <div id="filter-data">
 
 </div>
-<%= link_to 'New Admission', new_admission_path %>
-
-<script type="text/javascript">
-/*  $(document).ready(function () {
-    $("#review_admission_filter").submit(function(){
-
-    })
-  })*/
-</script>

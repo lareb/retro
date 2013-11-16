@@ -150,6 +150,7 @@ span.check { background-image: url(/assets/web/check.png); height: 18px; width: 
     margin: 20px;
     width: auto;
     clear: both;
+    border-bottom: 2px solid gray;
 }
 
 #nav,
@@ -305,9 +306,9 @@ table.display td {
     float: left;
     font-size: 14px;
     height: auto;
+    margin-top: 10px;
     text-align: right;
-    width: 25%;
-}
+    width: 32%;}
 
 .inner-box-container input[type="text"],
 .inner-box-container input[type="number"],
@@ -315,6 +316,7 @@ table.display td {
 .inner-box-container input[type="tel"],
 .inner-box-container input[type="password"],
 .inner-box-container textarea,
+.review-filter select,
 .inner-box-container select{
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
@@ -425,7 +427,8 @@ table.display thead th{
 
 .review-filter .filter{
     float: left;
-    margin-right: 50px;
+    margin-right: 12px;
+    margin-top: 2px;
 }
 
 .review-filter input[type="button"]{
@@ -435,7 +438,6 @@ table.display thead th{
 }
 
 .left-sec{
-    border: 1px solid #FF0000;
     float: left;
     width: 48%;
 }
@@ -454,12 +456,12 @@ table.display thead th{
 }
 
 .right-sec{
-    border: 1px solid #008000;
     float: right;
     height: 100%;
     min-height: 490px;
     width: 50%;
 }
+
 /*
 .adjustive .input{
     float: left;
