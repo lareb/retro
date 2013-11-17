@@ -45,19 +45,19 @@ class AdmissionsController < ApplicationController
   # POST /admissions
   # POST /admissions.json
   def create
-    @admission = Admission.new(params[:admission])
     begin
       Admission.transaction do
         #Student pic upload
-        puts "------------------------#{params[:assets]}"
-        if params[:assets]
-          puts "========234243223=========="
-          asset = Asset.create(params[:assets])
-          params[:admission][:asset] = asset 
-        end
 
+        @admission = Admission.new(params[:admission])
+        
         respond_to do |format|
-          if @admission.save
+          if @admission.save!
+            if params[:assets]
+              asset = Asset.create(params[:assets])
+              asset.update_attribute(:attachable, @admission)
+            end
+            
             format.html { redirect_to edit_admission_path(@admission, :step => 2), notice: 'Admission was successfully created.' }
             format.json { render json: @admission, status: :created, location: @admission }
           else
@@ -80,18 +80,19 @@ class AdmissionsController < ApplicationController
     @admission = Admission.find(params[:id])
     next_step = params[:step] == "2" ? @admission : edit_admission_path(@admission, :step => 2)
 
-    #begin
+    begin
       Admission.transaction do
         #Student pic upload
-        puts "------------------------#{params[:assets]}"
+        asset = nil
         if @admission.asset.nil?
-          asset = Asset.create(params[:assets])
+          asset = Asset.create(params[:assets]) if params[:assets]
         else
-          @admission.asset.update_attributes(params[:assets])
+          @admission.asset.update_attributes(params[:assets]) if params[:assets]
           asset = @admission.asset
         end
         respond_to do |format|
           if @admission.update_attributes(params[:admission])
+            asset.update_attribute(:attachable, @admission) unless asset.nil?
             format.html { redirect_to next_step, notice: 'Admission was successfully updated.' }
             format.json { head :no_content }
           else
@@ -100,14 +101,13 @@ class AdmissionsController < ApplicationController
           end
         end
       end
-    #rescue Exception => e
-    #  puts "----------------------xxx-----------------------"
-    #  ap e.message
-    #  ap e.backtrace.inspect
-    #  render action: "edit"
-    #  return
-    #end
-
+    rescue Exception => e
+      puts "----------------------xxx-----------------------"
+      ap e.message
+      ap e.backtrace.inspect
+      render action: "edit"
+      return
+    end
   end
 
   # DELETE /admissions/1
