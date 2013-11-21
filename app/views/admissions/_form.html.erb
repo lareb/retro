@@ -28,8 +28,9 @@
 
 
         <div class="input string optional">
-          <label for="admission_birth_place" class="string optional">Birth place</label>
-          <input type="file" name="assets[data]" id="admission_asset" class="string optional"/>
+          <label for="admission_birth_place" class="string optional">Student Photo</label>
+          <input type="file" name="assets[data]" id="admission_asset" class="string optional" style="<%unless @admission.try(:asset).try(:data).nil?%>width: 192px;<%end%>"/>
+          <%= (image_tag @admission.asset.data(:thumb), :style => "float: left; margin-left: 10px;" ) unless @admission.try(:asset).try(:data).nil?%>
         </div>
 
         <%= f.input :local_guardian_name %>

@@ -310,6 +310,7 @@ table.display td {
     text-align: right;
     width: 32%;}
 
+.inner-box-container input[type="file"],
 .inner-box-container input[type="text"],
 .inner-box-container input[type="number"],
 .inner-box-container input[type="email"],
@@ -443,16 +444,17 @@ table.display thead th{
 }
 
 .left-sec .student-pic{
-    border: 1px solid #000000;
     clear: both;
     float: left;
     height: 200px;
+    margin: 15px 0 0 15px;
     width: 175px;
 }
 
 .left-sec .student-basic-info{
     clear: both;
     float: left;
+    margin-left: 15px;
 }
 
 .right-sec{

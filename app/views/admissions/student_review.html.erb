@@ -1,6 +1,8 @@
 <div class="left-sec">
 
-  <div class="student-pic"></div>
+  <div class="student-pic">
+    <%= image_tag (@admission.try(:asset).try(:data, :small).nil? ? "/assets/web/default-stdnt.jpg" : @admission.try(:asset).try(:data, :small)) %>
+  </div>
 
   <div class="student-basic-info">
       <h2><%= @admission.name %></h2>
