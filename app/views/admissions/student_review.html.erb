@@ -6,6 +6,10 @@
 
   <div class="student-basic-info">
       <h2><%= @admission.name %></h2>
+      <%= raw display_label("Admission #",@admission.admission_no)%>
+      <%= raw display_label("Date of Birth", @admission.date_of_birth) %>
+      <%= raw display_label("Blood Group", @admission.blood_group) %>
+      <%= raw display_label("Gender", @admission.gender) %>      
   </div>
   
 </div>

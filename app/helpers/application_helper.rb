@@ -19,4 +19,16 @@ module ApplicationHelper
     end
     return roles.join(", ")
   end
+
+  def display_label(title, value)
+    return if value.blank?
+    <<-eos
+      <div class="input">
+          <label class="string optional">#{title}</label>
+          <label class="string optional">#{value}</label>
+      </div>
+    eos
+  end
+
+
 end
