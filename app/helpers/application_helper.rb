@@ -24,8 +24,8 @@ module ApplicationHelper
     return if value.blank?
     <<-eos
       <div class="input">
-          <label class="string optional">#{title}</label>
-          <label class="string optional">#{value}</label>
+          <label class="display_label">#{title}</label>
+          <label class="display_value">#{value}</label>
       </div>
     eos
   end

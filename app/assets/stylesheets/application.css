@@ -462,7 +462,25 @@ table.display thead th{
     height: 100%;
     min-height: 490px;
     width: 50%;
+    margin-top: 15px;
 }
+
+.display_label{
+    float: left;
+    width: 225px;
+}
+
+.display_label, .display_value{
+    line-height: 28px;
+}
+
+.display_value{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
 
 /*
 .adjustive .input{

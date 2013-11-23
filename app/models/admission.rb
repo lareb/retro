@@ -10,6 +10,7 @@ class Admission < ActiveRecord::Base
   belongs_to :admission_batch, :foreign_key => :admission_batch_id, :class_name => Klass
   belongs_to :last_klass, :foreign_key => :last_batch, :class_name => Klass
 
+
   def admission_no
       Time.now.strftime("#{CODE}-%d%m%Y#{self.id}").upcase
   end
@@ -17,5 +18,11 @@ class Admission < ActiveRecord::Base
   def name
     [self.student_first_name.try(:capitalize), self.student_middle_name.blank? ? nil : self.student_middle_name.try(:capitalize), self.student_last_name.try(:capitalize)].compact.join(" ")
   end
+
+  def address
+    address = [name(), self.address_line1, self.address_line2, "#{self.city} #{self.state}", "#{self.zip}"].compact
+    address.join("<br/>")
+  end
+
 
 end

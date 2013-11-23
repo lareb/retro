@@ -9,12 +9,32 @@
       <%= raw display_label("Admission #",@admission.admission_no)%>
       <%= raw display_label("Date of Birth", @admission.date_of_birth) %>
       <%= raw display_label("Blood Group", @admission.blood_group) %>
-      <%= raw display_label("Gender", @admission.gender) %>      
+      <%= raw display_label("Gender", @admission.gender) %>
+
+      <%= raw display_label("Last Passed Class", "#{@admission.last_klass.try(:display_name)} in #{@admission.last_academic_year}") %>
+      <%= raw display_label("Last result", "#{@admission.last_batch_result} with #{@admission.last_batch_result_in_per}%") %>
+      <%= raw display_label("Last School", @admission.last_institution) %>
+      <%= raw display_label("Admission in #",@admission.admission_batch.try(:display_name))%>
   </div>
   
 </div>
 
 <div class="right-sec">
-  
+    <%= raw display_label("Father's Name",@admission.father_name)%>
+    <%= raw display_label("Mother's Name", @admission.mother_name) %>
+    <%= raw display_label("Local Guardian Name", @admission.local_guardian_name) %>
+    <%= raw display_label("Nationality", @admission.nationality_id) %>
+    <%= raw display_label("Mother Language", @admission.mother_language) %>
+    <%= raw display_label("Religion", @admission.religion) %>
+
+    <%= raw display_label("Student Category",@admission.student_category)%>
+    <%= raw display_label("Contact numbers", "#{@admission.phone1}, #{@admission.phone2}") %>
+    <%= raw display_label("Immediate Contact", @admission.immediate_contact) %>
+    <%= raw display_label("Guardian Email", @admission.guardian_email) %>
+    <%= raw display_label("Father's Occupation", @admission.occupation) %>
+    <%= raw display_label("Income", @admission.income) %>
+
+    <%= raw display_label("Father's education",@admission.education)%>
+    <%= raw display_label("Birth place", "#{@admission.birth_place}") %>
 </div>
 
