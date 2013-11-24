@@ -6,7 +6,10 @@ class Admission < ActiveRecord::Base
     :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year
 
   has_one :asset, :as => :attachable #, :dependent =>:destroy
-  
+
+  has_many :admiddion_doccuments
+  has_many :doccuments, :through => :admiddion_doccuments
+
   belongs_to :admission_batch, :foreign_key => :admission_batch_id, :class_name => Klass
   belongs_to :last_klass, :foreign_key => :last_batch, :class_name => Klass
 
