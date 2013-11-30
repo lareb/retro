@@ -1,6 +1,6 @@
-class CreateDoccuments < ActiveRecord::Migration
+class CreateDocuments < ActiveRecord::Migration
   def change
-    create_table :doccuments do |t|
+    create_table :documents do |t|
       t.string :name
       t.string :description
       t.timestamps

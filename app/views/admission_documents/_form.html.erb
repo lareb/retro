@@ -1,0 +1,26 @@
+<div class="inner-box-container">
+  <%= simple_form_for(@admission_document, :url => admission_admission_documents_path(@admission), :html => {:multipart => true}) do |f| %>
+    <% if @admission_document.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@admission_document.errors.count, "error") %> prohibited this subject from being saved:</h2>
+        <%= f.error_notification  %>
+      </div>
+    <% end %>
+
+    <%= f.association :document, :required => true %>
+    <div class="input string optional">
+      <label for="admission_birth_place" class="string optional">Student's Document </label>
+      <input type="file" name="attachments[data]" id="admission_asset" class="string optional" style=""/>
+      <%#= (image_tag @admission.attachment.data(:thumb), :style => "float: left; margin-left: 10px;" ) unless @admission.try(:attachment).try(:data).nil?%>
+    </div>
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', documents_path, :class => "link-button" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

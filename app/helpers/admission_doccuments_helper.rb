@@ -1,0 +1,2 @@
+module AdmissionDoccumentsHelper
+end

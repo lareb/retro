@@ -1,0 +1,23 @@
+<div class="inner-box-container">
+  <%= simple_form_for(@document) do |f| %>
+    <% if @document.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@document.errors.count, "error") %> prohibited this subject from being saved:</h2>
+        <%= f.error_notification  %>
+      </div>
+    <% end %>
+
+    <%= f.input :name, :as => :string, :required => true %>
+    <%= f.input :description, :as => :string %>
+    
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', documents_path, :class => "link-button" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

@@ -33,10 +33,11 @@ Pathshala::Application.routes.draw do
     member do
       get "review", :to => "admissions#student_review"
     end
+    resources :admission_documents, :path => 'documents'
   end
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]
-
+  resources :documents
   #match 'teachers/:id' => 'teacher#show'
 
   # The priority is based upon order of creation:
