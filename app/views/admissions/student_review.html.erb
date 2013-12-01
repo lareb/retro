@@ -36,5 +36,7 @@
 
     <%= raw display_label("Father's education",@admission.education)%>
     <%= raw display_label("Birth place", "#{@admission.birth_place}") %>
+
 </div>
+<%= link_to "Next", new_admission_admission_document_path(@admission), :class => "button right-bottom-corner" %>
 

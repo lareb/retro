@@ -15,37 +15,51 @@ class AdmissionDocumentsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @admission_document }
+      format.js
     end
   end
 
-  def create
-    puts "=========================="
-    ap @admission_document
-
-    begin
-      AdmissionDocument.transaction do
-        @admission_document = AdmissionDocument.new(params[:admission_document])
-        respond_to do |format|
+  def create    
+    respond_to do |format|
+      begin
+        AdmissionDocument.transaction do
           if @admission_document.save!
             if params[:attachments]
               asset = Attachment.create(params[:attachments])
               asset.update_attribute(:bindable, @admission_document)
             end
 
-            format.html { redirect_to new_admission_admission_document_path(@admission_document), notice: 'Admission was successfully created.' }
+            format.html { redirect_to admission_admission_documents_path(@admission), notice: 'Admission was successfully created.' }
             format.json { render json: @admission_document, status: :created, location: @admission_document }
           else
             format.html { render action: "new" }
             format.json { render json: @admission_document.errors, status: :unprocessable_entity }
           end
+          
         end
+      rescue Exception => e
+        ap e.message
+        ap e.backtrace.inspect
+        render action: "new"
+        return
       end
-    rescue Exception => e
-      ap e.message
-      ap e.backtrace.inspect
-      render action: "new"
-      return
     end
-
   end
+
+  def edit
+    respond_to do |format|
+      format.html { render :layout => !request.xhr?}
+      format.json { render json: @admission_document }
+      format.js
+    end
+  end
+
+  def destroy
+    @admission_document.destroy
+    respond_to do |format|
+      format.html { redirect_to admission_admission_documents_path }
+      format.json { head :no_content }
+    end
+  end
+
 end

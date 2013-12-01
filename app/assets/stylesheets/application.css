@@ -438,6 +438,12 @@ table.display thead th{
     padding: 6px !important;
 }
 
+.main-sec{
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
 .left-sec{
     float: left;
     width: 48%;
@@ -479,7 +485,11 @@ table.display thead th{
     font-weight: bold;
 }
 
-
+.right-bottom-corner{
+    clear: both;
+    float: right;
+    margin: 0 10px 10px 0;
+}
 
 
 /*

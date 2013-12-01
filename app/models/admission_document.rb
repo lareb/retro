@@ -4,5 +4,5 @@ class AdmissionDocument < ActiveRecord::Base
   belongs_to :admission
   belongs_to :document
   
-  has_many  :attachments, :as => :bindable #, :dependent =>:destroy
+  has_one  :attachment, :as => :bindable, :dependent =>:destroy
 end

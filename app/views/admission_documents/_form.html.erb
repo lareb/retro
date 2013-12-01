@@ -1,4 +1,4 @@
-<div class="inner-box-container">
+<div class="inner-box-container" <%if controller.action_name == 'edit'%>style="width: 60% !important;"<%end%>>
   <%= simple_form_for(@admission_document, :url => admission_admission_documents_path(@admission), :html => {:multipart => true}) do |f| %>
     <% if @admission_document.errors.any? %>
       <div id="error_explanation">
@@ -10,8 +10,7 @@
     <%= f.association :document, :required => true %>
     <div class="input string optional">
       <label for="admission_birth_place" class="string optional">Student's Document </label>
-      <input type="file" name="attachments[data]" id="admission_asset" class="string optional" style=""/>
-      <%#= (image_tag @admission.attachment.data(:thumb), :style => "float: left; margin-left: 10px;" ) unless @admission.try(:attachment).try(:data).nil?%>
+      <input type="file" name="attachments[doc]" id="admission_asset" class="string optional" style=""/>
     </div>
 
     <div class="input">
@@ -21,6 +20,9 @@
         <%= link_to 'Back', documents_path, :class => "link-button" %>
       </div>
     </div>
-
   <% end %>
+</div>
+
+<div class="doc-preview">
+  <%= (image_tag @admission_document.attachment.doc(:small), :style => "float: left; margin-left: 10px;" ) unless @admission_document.try(:attachment).try(:doc).nil?%>
 </div>

@@ -5,7 +5,7 @@ class Admission < ActiveRecord::Base
     :guardian_email, :occupation, :income, :education, :blood_group, :birth_place, :status_description, :is_active, :is_deleted, :former_id, 
     :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year
 
-  has_one   :asset, :as => :attachable #, :dependent =>:destroy
+  has_one   :asset, :as => :attachable, :dependent =>:destroy
   #has_many  :attachments, :as => :attachmentable #, :dependent =>:destroy
 
   has_many :admission_documents
