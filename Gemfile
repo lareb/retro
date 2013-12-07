@@ -34,8 +34,17 @@ gem 'simple_form'
 gem 'will_paginate'
 
 gem 'awesome_print'
-gem 'rails_12factor', group: :production
-gem 'pg', group: :production
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+group :development, :test do
+  gem 'sqlite3'
+end
+gem "activerecord-postgresql-adapter"
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
