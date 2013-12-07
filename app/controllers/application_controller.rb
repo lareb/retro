@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  USER, PASSWORD = 'amazing', 'rooftroop'
   protect_from_forgery
   layout "application"
+  before_filter :authentication_check
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
@@ -43,5 +45,11 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug("\n\nsSearch: #{sSearch}, per_page: #{per}, page: #{page}, sort: #{sort}, sort_direction: #{sort_direction}\n\n")
     return sSearch, per, page, sort, sort_direction
   end
-
+  
+private
+    def authentication_check
+      authenticate_or_request_with_http_basic do |user, password|
+        user == USER && password == PASSWORD
+      end
+    end
 end
