@@ -1,0 +1,28 @@
+<div class="inner-box-container">
+  <%= simple_form_for([@klass, @klass_fee]) do |f| %>
+    <% if @klass_fee.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@klass_fee.errors.count, "error") %> prohibited this klass_fee from being saved:</h2>
+
+        <ul>
+        <% @klass_fee.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.association :fee %>
+    <%= f.input :amount %>
+    <%= f.input :cycle, collection: ["Daily", "Weekly", "Monthly", "Yearly", "Session"]%>
+    <%= f.input :description %>
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', klass_klass_fees_path(@klass), :class => "link-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>

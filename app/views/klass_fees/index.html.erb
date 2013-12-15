@@ -1,0 +1,47 @@
+<h1>Fee for Class <%=@klass.display_name%></h1>
+
+<table id="klass_fees" class="display">
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Fee</th>
+      <th>Amount</th>
+      <th>Cycle</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @klass_fees.each do |klass_fee| %>
+    <tbody>
+      <tr>
+        <td><%= klass_fee.klass.try(:display_name) %></td>
+        <td><%= klass_fee.fee.try(:display_name) %></td>
+        <td><%= klass_fee.amount %></td>
+        <td><%= klass_fee.cycle %></td>
+        <td><%= klass_fee.description %></td>
+        <td><%= link_to 'Edit', edit_klass_klass_fee_path(@klass, klass_fee) %></td>
+        <td><%= link_to 'Destroy', klass_klass_fee_path(@klass, klass_fee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Klass fee', new_klass_klass_fee_path(@klass) %>
+
+<div id="new_fee_form"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#klass_fees').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+
+  });
+</script>

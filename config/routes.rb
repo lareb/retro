@@ -19,11 +19,13 @@ Pathshala::Application.routes.draw do
   end
 
   resources :klasses do
+    resources :klass_fees, :path => "fees"    
     resources :students
     resources :teacher_klasses, :path => "teachers"
     resources :sections
   end
   resources :courses do
+    resources :course_fees, :path => "fees"
     resources :course_timings, :path => "timings"
   end
   resources :admissions do
@@ -38,6 +40,8 @@ Pathshala::Application.routes.draw do
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]
   resources :documents
+  resources :fees
+
   #match 'teachers/:id' => 'teacher#show'
 
   # The priority is based upon order of creation:

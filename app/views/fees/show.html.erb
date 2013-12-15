@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @fee.name %>
+</p>
+
+<p>
+  <b>Display name:</b>
+  <%= @fee.display_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @fee.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_fee_path(@fee) %> |
+<%= link_to 'Back', fees_path %>

@@ -1,0 +1,40 @@
+<h1>Fees</h1>
+
+<table id="fees" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Display name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @fees.each do |fee| %>
+  <tbody>
+    <tr>
+      <td><%= fee.name %></td>
+      <td><%= fee.display_name %></td>
+      <td><%= fee.description %></td>
+      <td><%= link_to 'Edit', edit_fee_path(fee), :remote => true %></td>
+      <td><%= link_to 'Destroy', fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<%= link_to 'New Fee', new_fee_path, :remote => true %>
+
+<div id="new_fee_form"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#fees').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+
+  });
+</script>

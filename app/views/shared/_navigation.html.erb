@@ -37,5 +37,12 @@
         </li>
     <%end%>
 
+    <%if can? :manage, Document%>
+        <li class="<%if controller.controller_name == 'document' && controller.action_name == 'index'%>active<%end%>">
+          <%= link_to 'Documents', documents_path() %>
+        </li>
+    <%end%>
+
+
   </ul>
 <%end%>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Course:</b>
+  <%= @course_fee.course_id %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%= @course_fee.fee_id %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @course_fee.amount %>
+</p>
+
+<p>
+  <b>Cycle:</b>
+  <%= @course_fee.cycle %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @course_fee.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_course_fee_path(@course_fee) %> |
+<%= link_to 'Back', course_fees_path %>

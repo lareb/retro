@@ -1,0 +1,46 @@
+<h1>Course Fee</h1>
+
+<table id="course_fees" class="display">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Fee</th>
+      <th>Amount</th>
+      <th>Cycle</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <% @course_fees.each do |course_fee| %>
+  <tbody>
+    <tr>
+      <td><%= course_fee.course.try(:display_name) %></td>
+      <td><%= course_fee.fee.try(:display_name) %></td>
+      <td><%= course_fee.amount %></td>
+      <td><%= course_fee.cycle %></td>
+      <td><%= course_fee.description %></td>
+      <td><%= link_to 'Edit', edit_course_course_fee_path(@course, course_fee) %></td>
+      <td><%= link_to 'Destroy', course_course_fee_path(@course, course_fee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Course fee', new_course_course_fee_path(@course) %>
+<div id="new_course_fees_form"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#course_fees').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+
+  });
+</script>

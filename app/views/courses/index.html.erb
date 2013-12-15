@@ -8,6 +8,7 @@
       <th>Description</th>
       <th>Start</th>
       <th></th>
+      <th>Fee</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
         <td><%= course.description %></td>
         <td><%= raw get_time_in_format(course)%></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td><%= link_to 'Fee', course_course_fees_path(course) %></td>
       </tr>
     <% end %>
 
@@ -26,3 +28,15 @@
 <br />
 
 <%= link_to 'New Course', new_course_path %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#courses').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+
+
+  });
+</script>

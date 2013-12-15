@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  course_id: 1
+  fee_id: 1
+  amount: 9.99
+  cycle: MyString
+  description: MyText
+
+two:
+  course_id: 1
+  fee_id: 1
+  amount: 9.99
+  cycle: MyString
+  description: MyText
