@@ -7,9 +7,40 @@ class AdmissionsController < ApplicationController
   def index
     @render_breadcrumb = breadcrumb_path({:disable => "Admission"})
     #@admissions = Admission.all
+    
+    
+    sort_fields = [:order_number]
+    q, per, page, sort, sort_direction = datatable_params(params[:sSearch],
+                                                               params[:iDisplayLength],
+                                                               params[:iDisplayStart],
+                                                               params[:iSortingCols],
+                                                               params[:iSortCol_0],
+                                                               params[:sSortDir_0],
+                                                               sort_fields)
+
+    search_conditions = "(admissions.student_first_name like '%#{q}%' OR
+                        admissions.student_middle_name like '%#{q}%' OR
+                        admissions.student_last_name like '%#{q}%' OR
+                        admissions.admission_no like '%#{q}%' OR
+                        admissions.father_name like '%#{q}%' OR
+                        admissions.mother_name like '%#{q}%' OR
+                        admissions.local_guardian_name like '%#{q}%' OR
+                        admissions.student_category like '%#{q}%' OR
+                        admissions.city like '%#{q}%' OR
+                        admissions.address_line1 like '%#{q}%' OR
+                        admissions.address_line2 like '%#{q}%')"
+
+    search_conditions = params[:klass].present? ? "#{search_conditions} AND admission_batch_id = #{params[:klass]}" : search_conditions
+    #search_conditions = params[:percentage].present? ? "#{search_conditions} AND last_batch_result_in_per <= #{params[:percentage]}" : search_conditions
+
+      search_conditions = "#{search_conditions}" #AND admission_batch_id = #{params[:klass]}"    
+      @admissions = Admission.page(page).per(per).where(search_conditions).order(:admission_batch_id)
+      @total = Admission.where(search_conditions).count.ceil
+    
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @admissions }
+      format.json #{ render json: @admissions }
     end
   end
 

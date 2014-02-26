@@ -16,7 +16,7 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-  gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
+  gem 'jquery-datatables-rails'#, :git => 'git://github.com/rweng/jquery-datatables-rails.git'
   gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -47,7 +47,10 @@ gem 'awesome_print'
 
 # To use debugger
 # gem 'debugger'
-gem 'therubyracer'
+group :production do
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+end
 gem "kaminari"
 
 gem "paperclip", "~> 3.0"

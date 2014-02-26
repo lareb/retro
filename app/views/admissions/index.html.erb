@@ -28,16 +28,32 @@
 <% end %>
 </tbody>
 </table>
-
+<div id="klass-drop-down" style="display:none;">
+  <label>Filter by Class
+    <%= select_tag(:klass, options_from_collection_for_select(Klass.all, "id", "display_name", params[:klass]), :prompt => "Select Class") %>
+  </label>
+</div>
 <%= link_to 'New Admission', new_admission_path %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    oTable = $('#admissions').dataTable({
-       "sPaginationType": "full_numbers",
-       "bJQueryUI": true,
-      "iDisplayLength":50
+    $(document).ready(function () {
+     oTable =  $('#admissions').dataTable(
+              {
+                "bServerSide":true,
+                "bProcessing":true,
+                "sAjaxSource":"<%= admissions_path(:klass => params[:klass])%>",
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true,
+                "iDisplayLength": 50,
+                "aLengthMenu": [10, 25, 50, 100, 150],
+                "aoColumnDefs":[{"bSortable":false, "aTargets":[7]}]
+              }
+      );
+        
+      $("#admissions_filter").prepend($("#klass-drop-down").html());  
+      
+      $("#klass").change(function(){
+          window.location.href = "?klass="+$(this).val();
+      })
     });
-  });
-
-</script>
+  </script>
