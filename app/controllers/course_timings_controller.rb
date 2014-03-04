@@ -31,6 +31,7 @@ class CourseTimingsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @course_timing }
+      format.js
     end
   end
 
@@ -80,7 +81,7 @@ class CourseTimingsController < ApplicationController
     @course_timing.destroy
 
     respond_to do |format|
-      format.html { redirect_to course_timings_url }
+      format.html { redirect_to courses_path }
       format.json { head :no_content }
     end
   end

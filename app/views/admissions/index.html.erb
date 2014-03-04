@@ -16,14 +16,6 @@
   <tbody>
 <% @admissions.each do |admission| %>
   <tr>
-    <td><%= link_to admission.admission_no, admission_path(admission) %></td>
-    <td><%= admission.name %></td>
-    <td><%= admission.father_name %></td>
-    <td><%= admission.last_klass.try(:display_name) %></td>
-    <td><%= admission.admission_batch.try(:display_name) %></td>
-    <td><%= admission.last_institution %></td>
-    <td><%= admission.last_batch_result_in_per %>%</td>
-    <td><%= link_to 'Edit', edit_admission_path(admission) %></td>
   </tr>
 <% end %>
 </tbody>

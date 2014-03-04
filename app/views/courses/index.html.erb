@@ -18,7 +18,7 @@
         <td><%= course.display_name || course.name %></td>
         <td><%= course.description %></td>
         <td><%= raw get_time_in_format(course)%></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td><%= link_to 'Edit', edit_course_path(course), :remote => true %></td>
         <td><%= link_to 'Fee', course_course_fees_path(course) %></td>
       </tr>
     <% end %>
@@ -27,7 +27,9 @@
 </table>
 <br />
 
-<%= link_to 'New Course', new_course_path %>
+<%= link_to 'New Course', new_course_path, :remote => true %>
+
+<div id="new_course"></div>
 
 <script type="text/javascript">
   $(document).ready(function(){

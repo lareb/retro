@@ -8,7 +8,7 @@ aaData = [];
     admission.admission_batch.try(:display_name),
     admission.last_institution,
     admission.last_batch_result_in_per,
-    link_to('Edit', edit_admission_path(admission))
+    "#{link_to('Edit', edit_admission_path(admission))} / #{link_to 'Review',  review_admission_path(admission)}"
                                 ]}
 %>
 

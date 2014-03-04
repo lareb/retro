@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @course }
+      format.js
     end
   end
 
@@ -36,17 +37,21 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
-    #@course = @parent.msri_registrations.build
+    respond_to do |format|
+      format.html
+      format.json { render json: @course }
+      format.js
+    end    
   end
 
   # POST /courses
   # POST /courses.json
   def create
-    Course.transaction do
-      @course.save
+    #Course.transaction do
+      #@course.save
       respond_to do |format|
-        @course_timing = @course.course_timings.new(params[:course_timing])
-        if @course_timing.save
+        #@course_timing = @course.course_timings.new(params[:course_timing])
+        if @course.save #@course_timing.save
           format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
           format.json { render json: @course, status: :created, location: @course }
         else
@@ -54,7 +59,7 @@ class CoursesController < ApplicationController
           format.json { render json: @course.errors, status: :unprocessable_entity }
         end
       end
-    end
+    #end
     return
   end
 
@@ -63,10 +68,11 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
 
-    Course.transaction do
-      @course.update_attributes(params[:course])
+    #Course.transaction do
+      #@course.update_attributes(params[:course])
       respond_to do |format|
-        if @course.course_timings.update_attributes(params[:course_timing])
+        if @course.update_attributes(params[:course]) 
+          #@course.course_timings.update_attributes(params[:course_timing])
           format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
           format.json { render json: @course, status: :created, location: @course }
         else
@@ -74,7 +80,7 @@ class CoursesController < ApplicationController
           format.json { render json: @course.errors, status: :unprocessable_entity }
         end
       end
-    end
+    #end
     return
   end
 

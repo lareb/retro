@@ -11,6 +11,9 @@ class Klass < ActiveRecord::Base
   has_many :sections
   has_many :admissions  #,:foreign_key => 'admission_batch_id'
 
+  #might be removed in next version
   has_many :klass_fees
   has_many :fees, :through => :klass_fees
+  
+  has_many :fee_structures
 end
