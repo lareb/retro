@@ -25,7 +25,9 @@ class FeeStructuresController < ApplicationController
   # GET /klass_fees/new.json
   def new
     #@klass_fee = KlassFee.new
-
+    puts "-----------------"
+    ap @klass
+    @fees = Fee.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @fee_structure }

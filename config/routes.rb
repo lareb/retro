@@ -19,7 +19,8 @@ Pathshala::Application.routes.draw do
   end
 
   resources :klasses do
-    resources :klass_fees, :path => "fees"    
+    resources :fee_structures, :path => "fees"
+    #resources :klass_fees, :path => "fees"    
     resources :students
     resources :teacher_klasses, :path => "teachers"
     resources :sections

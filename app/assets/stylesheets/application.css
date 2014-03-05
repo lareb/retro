@@ -327,6 +327,10 @@ table.display td {
     width: 250px;
 }
 
+input.tiny{
+	width: 50px !important;
+}
+
 .inner-box-container .check_boxes .checkbox label{
     float: none !important;
 }

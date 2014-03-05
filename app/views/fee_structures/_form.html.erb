@@ -1,0 +1,63 @@
+<div class="inner-box-container">
+
+  <%= simple_form_for([@klass, @fee_structure]) do |f| %>
+    <% if @fee_structure.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@fee_structure.errors.count, "error") %> prohibited this fee from being saved:</h2>
+
+        <ul>
+        <% @fee_structure.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+	<table id="fees123" class="display">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Description</th>
+	      <th>Fee per session</th>
+	      <th>Comments</th>
+	      <th>Cycle</th>
+	      <th>Is Refundable?</th>
+	      <th>Concession/Notes</th>
+	    </tr>
+	  </thead>
+	  <% @fees.each do |fee| %>
+	  <tbody>
+	    <tr>
+	      <td><%= fee.display_name %></td>
+	      <td><%= fee.description %></td>
+	      <td><input type="text" class="tiny"/></td>
+	      <td><input type="text" class="tiny" /></td>
+	      <td><input type="text" class="tiny" /></td>
+	      <td><input type="text" class="tiny" /></td>
+	      <td><input type="text" class="tiny" /></td>
+	    </tr>
+	  </tbody>
+	  
+	  <% end %>
+	</table>
+
+    <div class="input">
+      <label>&nbsp;</label>
+      <div class="actions">
+        <%= f.submit %>
+        <%= link_to 'Back', documents_path, :class => "link-button" %>
+      </div>
+    </div>
+  
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    oTable = $('#fees').dataTable({
+       "sPaginationType": "full_numbers",
+       "bJQueryUI": true,
+      "iDisplayLength":50
+    });
+  });
+</script>

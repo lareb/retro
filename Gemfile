@@ -32,6 +32,7 @@ gem 'simple_form'
 #data table pagination
 gem 'will_paginate'
 
+gem 'win32console', :platform => [:mswin, :mingw]
 gem 'awesome_print'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
