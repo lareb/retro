@@ -4,6 +4,7 @@ class AdmissionDocumentsController < ApplicationController
   load_and_authorize_resource :admission
   load_and_authorize_resource :admission_document, :through => :admission
 
+  #here
   def index
     respond_to do |format|
       format.html
