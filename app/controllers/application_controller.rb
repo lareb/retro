@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  USER, PASSWORD = 'amazing', 'rooftroop'
+  #USER, PASSWORD = 'amazing', 'rooftroop'
   protect_from_forgery
   layout "application"
-  before_filter :authentication_check
+  #before_filter :authentication_check
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message

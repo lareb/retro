@@ -4,7 +4,6 @@ class SessionsController < Devise::SessionsController
   prepend_before_filter { request.env["devise.skip_timeout"] = true }
   layout "login" #, :only => [:new]
 
-  
   # GET /resource/sign_in
   def new
     resource = build_resource(nil, :unsafe => true)
