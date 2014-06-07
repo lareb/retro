@@ -1,4 +1,4 @@
-  <table id="admissions" class="display">
+  <table id="admissions" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
       <th>Admission no</th>
@@ -27,6 +27,8 @@
   </tbody>
   </table>
 
+  <script src="/assets/admin/jquery.dataTables.js"></script>
+  <script src="/assets/admin/dataTables.bootstrap.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
      oTable =  $('#admissions').dataTable(

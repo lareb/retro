@@ -12,22 +12,27 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Section</th>
-                <th>Teachers</th>
-                <th>Add Teacher</th>
+                <th>Sections</th>
                 <th>Students</th>
-                <th></th>
+                <th>Teachers</th>
                 <th>Fee</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @klasses.each do |klass| %>
                 <tr class="<%= cycle("odd", "even") %>">
-                  <td><%= link_to klass.display_name, klass_students_path(klass) %></td>
-                  <td><%= klass.sections.map(&:display_name).join(", ")%>&nbsp;(<%= link_to "+", new_klass_section_path(klass) %>)</td>
-                  <td><%= link_to 'Teachers (+)', "#", :class_id => klass.id, :class => "open" %></td>
-                  <td><%= link_to 'Add Teacher', new_klass_teacher_klass_path(klass) %></td>
-                  <td><%= link_to 'Students', klass_students_path(klass) %></td>
+                  <td><%= klass.display_name %></td>
+                  <td>
+                    <%= raw(klass.sections.map(&:display_name).join("<hr/>")) %>
+                  </td>
+                  <td>
+                    <%= raw(klass.sections.collect{|s| link_to raw("<i class='fa fa-users'></i> Students"), klass_section_students_path(klass, s), :class => "btn btn-primary btn-xs" }.join("<hr/>"))  %>
+                  </td>                  
+                  <td>
+                    <%= link_to 'Teachers (+)', "#", :class_id => klass.id, :class => "open" %>
+                    <%= link_to 'Add Teacher', new_klass_teacher_klass_path(klass) %>
+                  </td>
                   <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
                   <td><%= link_to 'Fee', new_klass_fee_structure_path(klass) %></td>
                 </tr>

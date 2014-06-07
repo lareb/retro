@@ -21,9 +21,10 @@ Pathshala::Application.routes.draw do
   resources :klasses do
     resources :fee_structures, :path => "fees"
     #resources :klass_fees, :path => "fees"    
-    resources :students
     resources :teacher_klasses, :path => "teachers"
-    resources :sections
+    resources :sections do
+      resources :students
+    end
   end
   resources :courses do
     resources :course_fees, :path => "fees"
@@ -94,7 +95,7 @@ Pathshala::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'dashboard#index'
 
   # See how all your routes lay out with "rake routes"
 

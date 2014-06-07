@@ -1,25 +1,41 @@
-<h1>Admission Review</h1>
+<%= render :partial => "/layouts/header_breadcrumb", :locals => {:header => "Admission Review", :sub_header => "Complete List", :breadcrumb => @breadcrumb} %>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">        
+        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Teachers <a href="#" class="toggle-list" style="float:right"><i class="fa fa-chevron-circle-right"></i></a></h3>
+      </div>
+      <div class="panel-body data-list-toggle">
+        <div class="table-responsive">
+          <div class="review-filter">
+            <%= form_tag(review_admissions_path, :remote => true, :method => :get, :'data-update-target' => 'filter-data') do %>
+              <div class="filter">
+                <%= select_tag :klass, options_from_collection_for_select(Klass.all, "id", "display_name"), :prompt => "Select Class"%>
+                <select name="percentage" class="select">
+                  <option value="99">Select %</option>
+                  <option value="50">upto 50%</option>
+                  <option value="60">upto 60%</option>
+                  <option value="75">upto 75%</option>
+                  <option value="85">upto 85%</option>
+                  <option value="99">upto 99%</option>
+                </select>
+              </div>
 
-<div class="review-filter">
-  <%= form_tag(review_admissions_path, :remote => true, :method => :get, :'data-update-target' => 'filter-data') do %>
-    <div class="filter">
-      <%= select_tag :klass, options_from_collection_for_select(Klass.all, "id", "display_name"), :prompt => "Select Class"%>
-      <select name="percentage" class="select">
-        <option value="99">Select %</option>
-        <option value="50">upto 50%</option>
-        <option value="60">upto 60%</option>
-        <option value="75">upto 75%</option>
-        <option value="85">upto 85%</option>
-        <option value="99">upto 99%</option>
-      </select>
+              <input type="submit" value="Filter" class="button" />
+
+            <%end%>
+            
+            <div id="filter-data"></div>
+              
+          </div>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
     </div>
-
-    <input type="submit" value="Filter" class="button" />
-
-  <%end%>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
 
-
-<div id="filter-data">
-
-</div>
