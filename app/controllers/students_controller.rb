@@ -3,22 +3,14 @@ class StudentsController < ApplicationController
 
   #load_and_authorize_resource :klass
 
-  
   load_and_authorize_resource :klass
   load_and_authorize_resource :section, :through => :klass
   load_and_authorize_resource :student, :through => :section  
-#  
-#  load_and_authorize_resource :dimension_type
-#  load_and_authorize_resource :dimension, :through => :dimension_type
-#  load_and_authorize_resource :question, :through => :dimension  
-  
   
   # GET /students
   # GET /students.json
   def index
-    puts "----------------------"
-    ap @klass
-    #@students = Student.where(:klass_id => params[:klass_id])
+    @breadcrumb = breadcrumb_path({"Classes" => klasses_path(),@klass.display_name => klass_path(@klass), :disable => "Students"})
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @students }

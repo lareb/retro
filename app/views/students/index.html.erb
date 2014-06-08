@@ -14,7 +14,9 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Father name</th>
+                <%if @klass.nil?%>
                 <th>Class</th>
+                <%end%>
                 <th>Address</th>
                 <th>Contact</th>
                 <th>Roll no</th>
@@ -26,14 +28,16 @@
               <% @students.each_with_index do |student, index| %>
                 <tr>
                   <td><%= index + 1 %></td>
-                  <td><%= link_to student.name, klass_student_path(params[:klass_id], student) %></td>
+                  <td><%= link_to student.name, klass_section_student_path(@klass, @section, student) %></td>
                   <td><%= student.father_name %></td>
+                  <%if @klass.nil?%>
                   <td><%= link_to student.klass.display_name, student.klass %></td>
+                  <%end%>
                   <td><%= raw student.address %></td>
                   <td><%= student.contact_no_2.nil? ? student.contact_no_1 : "#{student.contact_no_1 }, #{student.contact_no_2}" %></td>
                   <td><%= student.roll_no %></td>
                   <td><%= student.enrollment_no.upcase %></td>
-                  <td><%= link_to 'Edit', edit_klass_student_path(params[:klass_id], student) %></td>
+                  <td><%= link_to 'Edit', edit_klass_section_student_path(@klass, @section, student) %></td>
                 </tr>
               <% end %>
 
@@ -48,7 +52,7 @@
   </div>
   <!-- /.col-lg-12 -->
 </div>
-<%= link_to 'New Student', new_klass_student_path(params[:klass_id]) %>
+<%= link_to 'New Student', new_klass_section_student_path(@klass, @section) %>
 
 <script src="/assets/admin/jquery.dataTables.js"></script>
 <script src="/assets/admin/dataTables.bootstrap.js"></script>

@@ -1,6 +1,9 @@
 class Student < ActiveRecord::Base
-  attr_accessible :address_1, :address_2, :blood_group, :contact_no_1, :contact_no_2, :dob, :enrollment_no, :father_name, :first_name, :klass_id, :last_name, :local_guardian_name, :mother_name, :roll_no, :city, :state, :pincode, :country, :gender
+  attr_accessible :address_1, :address_2, :blood_group, :contact_no_1, :contact_no_2, :dob, :enrollment_no, :father_name, :first_name, :klass_id, :last_name,
+    :local_guardian_name, :mother_name, :roll_no, :city, :state, :pincode, :country, :gender, :section_id
+
   belongs_to :klass
+  belongs_to :section
 
 
   def name

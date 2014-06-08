@@ -5,6 +5,8 @@ class Section < ActiveRecord::Base
   has_many :teacher_sections
   has_many :teachers, :through => :teacher_sections
 
+  has_many :students
+  
   scope :class_teacher, where(:is)
   
   def class_teacher

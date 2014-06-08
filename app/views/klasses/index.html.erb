@@ -31,7 +31,7 @@
                   </td>                  
                   <td>
                       <%= raw klass.sections.collect{|section| link_to(raw("<i class='fa fa-user'></i> Teachers"), klass_section_teacher_sections_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal") + " " +
-                        (link_to(raw("<i class='fa fa-plus'></i>"), new_klass_teacher_klass_path(klass), :class => "btn btn-primary btn-xs"))}.join("<hr/>") %>
+                        (link_to(raw("<i class='fa fa-plus'></i>"), new_klass_section_teacher_section_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal"))}.join("<hr/>") %>
                       
                   </td>
                   <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
@@ -65,7 +65,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Teachers</h4>
       </div>
-      <div class="modal-body" id="teachers">
+      <div class="modal-body" id="placeholder">
         <div class="loading"></div>
       </div>
       <div class="modal-footer">

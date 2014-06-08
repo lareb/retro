@@ -13,6 +13,8 @@ class Teacher < ActiveRecord::Base
   belongs_to :user
   belongs_to :higher_qualification
 
+  scope :active, where(:is_live => true)
+  
   def name
     "#{self.title} #{self.first_name.try(:capitalize)} #{self.last_name.try(:capitalize)}"
   end

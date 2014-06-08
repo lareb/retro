@@ -6,7 +6,7 @@ class TeacherSectionsController < ApplicationController
   load_and_authorize_resource :teacher_section, :through => :section
 
   def index
-    @render_breadcrumb = breadcrumb_path({@klass.name => url_for(@klass),:disable => "Subjects"})
+    @breadcrumb = breadcrumb_path({@klass.name => url_for(@klass),:disable => "Subjects"})
 
     respond_to do |format|
       format.html
@@ -20,7 +20,8 @@ class TeacherSectionsController < ApplicationController
   end
 
   def new
-    @render_breadcrumb = breadcrumb_path({@klass.name => url_for(@klass),:disable => "Subjects"})
+    @breadcrumb = breadcrumb_path({@klass.name => url_for(@klass),:disable => "Teacher"})
+    @available_teachers = Teacher.active - @section.teachers
     respond_to do |format|
       format.html # new.html.erb
       format.js
