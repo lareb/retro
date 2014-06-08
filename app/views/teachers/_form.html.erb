@@ -9,6 +9,7 @@
 
     <%unless params[:hide] == "on"%>
     <%= f.input :title, :as => :select, :collection => ["Mr", "Mrs", "Miss", "Dr"] %>
+    <%= f.input :title, :as => :select, :collection => ["Male", "Female"] %>
     <%= f.input :first_name, :as => :string, :required => true %>
     <%= f.input :last_name, :as => :string %>
     <%= f.association :higher_qualification%>

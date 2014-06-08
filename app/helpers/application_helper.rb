@@ -30,5 +30,9 @@ module ApplicationHelper
     eos
   end
 
-
+  def teacher_name(teacher)
+    return teacher.gender.try(:downcase) == "female" ? "<i class='fa fa-female'></i> #{teacher.name}" : "<i class='fa fa-male'></i> #{teacher.name}"
+  end
+  
+  
 end

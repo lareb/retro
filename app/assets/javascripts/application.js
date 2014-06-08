@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require fancybox
 //= require jquery.ui.datepicker
 //= require dataTables/jquery.dataTables
 //= require_directory ./admin
@@ -27,19 +26,6 @@ $(document).ready(function(){
     });
 
     $(".datepicker").datepicker();
-
-    /*$('.fancybox').fancybox({
-        padding : 0,
-        openEffect  : 'elastic',
-        helpers : {
-            overlay : {
-                css : {
-                    'border' : '2px red solid'
-                }
-            }
-        }
-
-    });*/
 
     var spans = $(".teacher_subjects").find("span.checkbox");
     spans.each(function(index){

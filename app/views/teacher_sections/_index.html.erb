@@ -1,0 +1,24 @@
+<%if @teacher_sections.blank?%>
+  <div class="alert alert-warning">
+      No Results Found
+  </div>
+<%else%>
+  <table id="teachers" class="table table-striped table-bordered table-hover" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @teacher_sections.each do |ts| %>
+      <tr>
+        <td><%= link_to raw(teacher_name(ts.teacher) + (ts.is_class_teacher? ? " <i class='fa fa-flag' title='Class Teacher'></i> " : "")), "#" %></td>
+        <td><%= link_to 'Edit', "#", :remote => true %></td>
+        <td><%= link_to 'Deactive', "#", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%end%>

@@ -3,7 +3,10 @@ class Teacher < ActiveRecord::Base
 
   has_many :teacher_klasses
   has_many :klasses, :through => :teacher_klasses
-
+  
+  has_many :teacher_sections
+  has_many :sections, :through => :teacher_sections
+  
   has_many :teacher_subjects
   has_many :subjects, :through => :teacher_subjects
 

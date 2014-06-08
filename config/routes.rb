@@ -24,6 +24,7 @@ Pathshala::Application.routes.draw do
     resources :teacher_klasses, :path => "teachers"
     resources :sections do
       resources :students
+      resources :teacher_sections, :path => "teachers"
     end
   end
   resources :courses do
