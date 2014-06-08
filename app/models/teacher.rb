@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
-  attr_accessible :title, :first_name, :last_name, :user_id, :is_live, :higher_qualification_id, :contact_no_1, :contact_no_2, :address, :subject_ids
+  attr_accessible :title, :first_name, :last_name, :user_id, :is_live, :higher_qualification_id, :contact_no_1, :contact_no_2, :address, :subject_ids, :gender
 
   has_many :teacher_klasses
   has_many :klasses, :through => :teacher_klasses
