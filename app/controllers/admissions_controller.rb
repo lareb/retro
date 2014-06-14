@@ -17,7 +17,11 @@ class AdmissionsController < ApplicationController
                                                                params[:iSortCol_0],
                                                                params[:sSortDir_0],
                                                                sort_fields)
-
+    @sort = ""
+    if params[:iSortingCols] && params[:iSortingCols] != "0"
+      @sort = ["admissions.admission_no", "admissions.student_first_name", "admissions.father_name", "admissions.last_batch", "admissions.admission_batch_id", 
+        "admissions.last_institution","admissions.last_batch_result_in_per"][params[:iSortCol_0].to_i]+" "+"#{params[:sSortDir_0]}"
+    end
     search_conditions = "(admissions.student_first_name like '%#{q}%' OR
                         admissions.student_middle_name like '%#{q}%' OR
                         admissions.student_last_name like '%#{q}%' OR
@@ -34,7 +38,7 @@ class AdmissionsController < ApplicationController
     #search_conditions = params[:percentage].present? ? "#{search_conditions} AND last_batch_result_in_per <= #{params[:percentage]}" : search_conditions
 
       search_conditions = "#{search_conditions}" #AND admission_batch_id = #{params[:klass]}"    
-      @admissions = Admission.page(page).per(per).where(search_conditions).order(:admission_batch_id)
+      @admissions = Admission.page(page).per(per).where(search_conditions).order(@sort)
       @total = Admission.where(search_conditions).count.ceil
     
     
