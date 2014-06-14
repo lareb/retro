@@ -1,0 +1,31 @@
+        <table id="klasses" class="table table-striped table-bordered table-hover" >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Sections</th>
+                <th>Students</th>
+                <th>Teachers</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @klasses.each do |klass| %>
+                <tr class="<%= cycle("odd", "even") %>">
+                  <td><%= klass.display_name %></td>
+                  <td>
+                    <%= raw(klass.sections.map(&:display_name).join("<hr/>")) %>
+                  </td>
+                  <td>
+                    <%= raw(klass.sections.collect{|s| link_to raw("<i class='fa fa-users'></i> Students"), klass_section_students_path(klass, s), :class => "btn btn-primary btn-xs" }.join("<hr/>"))  %>
+                  </td>                  
+                  <td>
+                      <%= raw klass.sections.collect{|section| link_to(raw("<i class='fa fa-user'></i> Teachers"), klass_section_teacher_sections_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal") + " " +
+                        (link_to(raw("<i class='fa fa-plus'></i>"), new_klass_section_teacher_section_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal"))}.join("<hr/>") %>
+                      
+                  </td>
+                  <td><%= link_to 'Edit', edit_klass_path(klass), :remote => true, "data-target" => "#modalId", "data-toggle" => "modal" %></td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>

@@ -24,8 +24,11 @@
               <% @teachers.each do |teacher| %>
                 <tr>
                   <td><%= link_to teacher.name, teacher_path(teacher), :class => "fancybox fancybox.ajax" %></td>
-                  <td><%= teacher.subjects.map(&:name).join(", ") %>&nbsp;<%= link_to "Add (+)", edit_teacher_path(teacher, :hide => :on), :class => "fancybox fancybox.ajax" %></td>
-                  <td><%= link_to "Classes (+)", "#", :teacher_id => teacher.id, :class => "open" %></td>
+                  <td>
+                      <%= teacher.subjects.map(&:name).join(", ") %>&nbsp;
+                      <%=link_to raw("<i class='fa fa-plus'></i>"), edit_teacher_path(teacher, :hide => :on), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal"%>
+                  </td>
+                  <td><%= link_to "Classes (+)", klasses_teacher_path(teacher), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal" %></td>
                   <td><%= teacher.higher_qualification.try(:name) %></td>
                   <td><%= teacher.contact_no_2.nil? ? teacher.contact_no_1 : "#{teacher.contact_no_1 }, #{teacher.contact_no_2}" %></td>
                   <td><%= teacher.user ? (link_to "Edit Account", edit_user_path(teacher.user)) : (link_to "Creat an Account", new_teacher_user_path(teacher)) %></td>
@@ -45,6 +48,8 @@
   <!-- /.col-lg-12 -->
 </div>
 
+<%= render :partial => "/shared/modal_box" %>
+
 <%= link_to 'Add New Teacher', new_teacher_path() %>
 
 <script src="/assets/admin/jquery.dataTables.js"></script>
@@ -56,25 +61,6 @@
        "bJQueryUI": true,
       "iDisplayLength":50
     });
-
-    $('#teacher tbody td a.open ').click(function (){
-      var nTr1 = $(this).parents('tr')[0];
-      console.log($(this));
-      if (oTable.fnIsOpen(nTr1) && $(nTr1).next().find("td.add_new").length > 0) {
-        oTable.fnClose(nTr1);
-        //toggle icon class
-        $(this).removeClass("shrink");
-        $(this).addClass("expand");
-        return false;
-      }else{
-        oTable.fnOpen(nTr1, showClasses(nTr1, $(this).attr("class_id"), 'new'), "add_new new_member_"+$(nTr1).attr("id"));
-        //toggle icon class
-        $(this).removeClass("expand");
-        $(this).addClass("shrink");
-        return false;
-      }
-    });
-
   });
 
   function showClasses(nTr, data, op){

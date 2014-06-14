@@ -35,7 +35,11 @@ class KlassesController < ApplicationController
 
   # GET /klasss/1/edit
   def edit
-    @klass = Klass.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.js
+      format.json { render json: @klass }
+    end    
   end
 
   # POST /klasss

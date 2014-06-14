@@ -1,39 +1,59 @@
-<div class="inner-box-container">
-  <%= simple_form_for(@teacher) do |f| %>
-    <% if @teacher.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this subject from being saved:</h2>
-        <%= f.error_notification  %>
-      </div>
-    <% end %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"> Add Teacher</div>
+        <div class="panel-body">
+          <%= simple_form_for(@teacher, :html => {class: 'large-input'}) do |f| %>
+            <% if @teacher.errors.any? %>
+              <div id="error_explanation">
+                  <div class="alert alert-danger alert-dismissable">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <ul>
+                          <% @teacher.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                      </ul>
+                  </div>
+              </div>
+            <% end %>
 
-    <%unless params[:hide] == "on"%>
-    <%= f.input :title, :as => :select, :collection => ["Mr", "Mrs", "Miss", "Dr"] %>
-    <%= f.input :gender, :as => :select, :collection => ["Male", "Female"] %>
-    <%= f.input :first_name, :as => :string, :required => true %>
-    <%= f.input :last_name, :as => :string %>
-    <%= f.association :higher_qualification%>
-    <%= f.input :contact_no_1, :as => :string %>
-    <%= f.input :contact_no_2, :as => :string %>
-    <%= f.input :is_live, :as => :boolean, :label => "Live" %>
-    <%end%>
-    <%= f.association :subjects, :as => :check_boxes, :label => false, :wrapper_html => {:class => "custom-ui-checkbox"} %>
-    
+            <%unless params[:hide] == "on"%>
+              <%= f.input :title, :as => :select, :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"}, :collection => ["Mr", "Mrs", "Miss", "Dr"], :label => false %>
+              <%= f.input :gender, :as => :select, :label => false, :placeholder => "Gender", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"},:collection => ["Male", "Female"] %>
+              <%= f.input :first_name, :as => :string, :required => true, :label => false, :placeholder => "First Name", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
+              <%= f.input :last_name, :as => :string, :label => false, :placeholder => "Last Name", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
+              <%= f.association :higher_qualification, :label => false, :placeholder => "Higher Qualification", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"}%>
+              <%= f.input :contact_no_1, :as => :string, :label => false, :placeholder => "Contact Number 1", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
+              <%= f.input :contact_no_2, :as => :string, :label => false, :placeholder => "Contact Number 2", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
 
-    <%#= f.simple_fields_for @user do |user| %>
-      <%#= user.input :email %>
-      <%#= user.input :password %>
-      <%#= user.input :password_confirmation %>
-    <%# end %>
+              <div class="checkbox">
+                <label for="dimension_is_live">
+                  <%= f.input :is_live, :label => "Is Active"%>
+                </label>
+              </div>            
+            <%end%>
+          
+          
+            <div class="form-group">
+              <label>Subjects</label>
+              <%Subject.active.each do |subject|%>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="<%= subject.id %>" name="teacher[subject_ids][]" <%=(@teacher.try(:subjects).map(&:id).include?(subject.id)) ? "checked='checked'" : '' %>> <%= subject.name%>
+                  </label>
+                </div>           
+              <%end%>
+            </div>
 
-
-    <div class="input">
-      <label>&nbsp;</label>
-      <div class="actions">
-        <%= f.submit %>
-        <%= link_to 'Back', teachers_path, :class => "link-button" %>
-      </div>
-    </div>
+            <button type="submit" class="btn btn-info pull-right btn">
+              <i class="icon-ok bigger-110"></i>
+              Submit
+            </button>          
+          
 
   <% end %>
-</div>
+
+         </div>
+      </div>
+  </div>
+</div>          

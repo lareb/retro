@@ -11,4 +11,5 @@ class Subject < ActiveRecord::Base
       where(:is_live => true)
     end
   }
+  scope :active, where(:is_live => true)
 end
