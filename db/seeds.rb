@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-#Seed Klass data
 puts "Pushing Classes"
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE klasses")
 klasses = [{ :name => '1', :display_name => "1st", :max_studen_count => 60},{ :name => '2', :display_name => "2nd", :max_studen_count => 60},{ :name => '3', :display_name => "3rd", :max_studen_count => 60},{ :name => '4', :display_name => "4th", :max_studen_count => 60},
@@ -28,6 +19,8 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE higher_qualifications")
 higher_degree = HigherQualification.create([{:name =>"MBA"}, {:name =>"MCA"}, {:name =>"PhD"}, {:name =>"M.Sc"}, {:name =>"BCA"}, {:name =>"M. Phill"}])
 higher_degree = higher_degree.map(&:id)
 
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE documents")
+Document.create([{:name => "Marksheet", :description => "Marksheet"}, {:name => "Birth Certificate", :description => "Birth Certificate"},{:name => "School Leaving Certificate", :description => "School Leaving Certificate"},{:name => "Transfer Certificate", :description => "Transfer Certificate"}])
 
 #Seed Roles data
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles")
