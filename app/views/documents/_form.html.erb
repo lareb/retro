@@ -1,23 +1,37 @@
-<div class="inner-box-container">
-  <%= simple_form_for(@document) do |f| %>
-    <% if @document.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@document.errors.count, "error") %> prohibited this subject from being saved:</h2>
-        <%= f.error_notification  %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"> Add Teacher</div>
+        <div class="panel-body">
+          <%= simple_form_for(@document) do |f| %>
+            <% if @document.errors.any? %>
+              <div id="error_explanation">
+                  <div class="alert alert-danger alert-dismissable">
+                      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                      <ul>
+                          <% @document.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                      </ul>
+                  </div>
+              </div>
+            <% end %>
+
+            <%= f.input :name, :as => :string, :required => true, :label => false, :placeholder => "Name", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
+            <%= f.input :description, :as => :string,:label => false, :placeholder => "Display Name", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>    
+
+            <button type="reset" class="btn" onclick="javascript:window.location.href='<%= request.referer%>'">
+              <i class="icon-undo bigger-110"></i>
+              Cancel
+            </button>          
+          
+            <button type="submit" class="btn btn-info pull-right btn">
+              <i class="icon-ok bigger-110"></i>
+              Submit
+            </button>
+
+          <% end %>
+         </div>
       </div>
-    <% end %>
-
-    <%= f.input :name, :as => :string, :required => true %>
-    <%= f.input :description, :as => :string %>
-    
-
-    <div class="input">
-      <label>&nbsp;</label>
-      <div class="actions">
-        <%= f.submit %>
-        <%= link_to 'Back', documents_path, :class => "link-button" %>
-      </div>
-    </div>
-
-  <% end %>
-</div>
+  </div>
+</div>            

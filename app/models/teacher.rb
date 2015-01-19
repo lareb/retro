@@ -19,4 +19,13 @@ class Teacher < ActiveRecord::Base
     "#{self.title} #{self.first_name.try(:capitalize)} #{self.last_name.try(:capitalize)}"
   end
 
+  def self.gaplu
+    "chota nishant"
+  end
+  
+  def gaplu
+    "xyz"
+  end
+  
+  
 end

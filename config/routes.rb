@@ -18,15 +18,26 @@ Pathshala::Application.routes.draw do
     resources :teacher_subjects, :path => 'subjects'
   end
 
+#  resources :klasses do
+#    resources :fee_structures, :path => "fees"
+#    #resources :klass_fees, :path => "fees"    
+#    resources :teacher_klasses, :path => "teachers"
+#    resources :sections do
+#      resources :students
+#      resources :teacher_sections, :path => "teachers"
+#    end
+#  end
+
   resources :klasses do
-    resources :fee_structures, :path => "fees"
-    #resources :klass_fees, :path => "fees"    
-    resources :teacher_klasses, :path => "teachers"
-    resources :sections do
-      resources :students
-      resources :teacher_sections, :path => "teachers"
+    member do
+      get "profile", :path => "myprofile"
     end
-  end
+    
+    collection do
+      get "all"
+    end
+ end
+  
   resources :courses do
     resources :course_fees, :path => "fees"
     resources :course_timings, :path => "timings"
@@ -103,4 +114,8 @@ Pathshala::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  
+  
+  
 end

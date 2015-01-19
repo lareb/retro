@@ -1,28 +1,36 @@
-<div class="inner-box-container" <%if controller.action_name == 'edit'%>style="width: 60% !important;"<%end%>>
-  <%= simple_form_for(@admission_document, :url => admission_admission_documents_path(@admission), :html => {:multipart => true}) do |f| %>
-    <% if @admission_document.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@admission_document.errors.count, "error") %> prohibited this subject from being saved:</h2>
-        <%= f.error_notification  %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"> Add Document</div>
+      <div class="panel-body">
+        <%= simple_form_for(@admission_document, :url => admission_admission_documents_path(@admission), :html => {:multipart => true}) do |f| %>
+          <% if @admission_document.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@admission_document.errors.count, "error") %> prohibited this subject from being saved:</h2>
+              <%= f.error_notification  %>
+            </div>
+          <% end %>
+
+          <%= f.association :document, :required => true, :label => false, :prompt => "Select Document", :input_html => {:class => "form-control"}, :wrapper_html => {:class => "form-group"} %>
+          <div class="input string optional">
+            <label for="admission_birth_place" class="string optional">Student's Document </label>
+            <input type="file" name="attachments[doc]" id="admission_asset" class="string optional" style=""/>
+          </div>
+
+          <button type="submit" class="btn btn-info pull-right btn">
+            <i class="icon-ok bigger-110"></i>
+            Submit
+          </button>
+
+          <button type="reset" class="btn pull-right" onclick="javascript:window.location.href='#'">
+            <i class="icon-undo bigger-110"></i>
+            Cancel
+          </button>        
+        <% end %>
+        <div class="doc-preview">
+          <%= (image_tag @admission_document.attachment.doc(:small), :style => "float: left; margin-left: 10px;" ) unless @admission_document.try(:attachment).try(:doc).nil?%>
+        </div>        
       </div>
-    <% end %>
-
-    <%= f.association :document, :required => true %>
-    <div class="input string optional">
-      <label for="admission_birth_place" class="string optional">Student's Document </label>
-      <input type="file" name="attachments[doc]" id="admission_asset" class="string optional" style=""/>
     </div>
-
-    <div class="input">
-      <label>&nbsp;</label>
-      <div class="actions">
-        <%= f.submit %>
-        <%= link_to 'Back', documents_path, :class => "link-button" %>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<div class="doc-preview">
-  <%= (image_tag @admission_document.attachment.doc(:small), :style => "float: left; margin-left: 10px;" ) unless @admission_document.try(:attachment).try(:doc).nil?%>
+  </div>
 </div>
