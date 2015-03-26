@@ -17,7 +17,7 @@
                   </td>
                   <td>
                     <%= raw(klass.sections.collect{|s| link_to raw("<i class='fa fa-users'></i> Students"), klass_section_students_path(klass, s), :class => "btn btn-primary btn-xs" }.join("<hr/>"))  %>
-                  </td>                  
+                  </td>                                                    
                   <td>
                       <%= raw klass.sections.collect{|section| link_to(raw("<i class='fa fa-user'></i> Teachers"), klass_section_teacher_sections_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal") + " " +
                         (link_to(raw("<i class='fa fa-plus'></i>"), new_klass_section_teacher_section_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal"))}.join("<hr/>") %>

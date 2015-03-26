@@ -23,7 +23,7 @@
                   <td><%= link_to section.name, klass_sections_path(@klass) %></td>
                   <td><%= section.display_name %></td>
                   <td><%= section.max_studen_count%></td>
-                  <td><%= link_to 'Edit', edit_klass_section_path(@klass. section) %></td>
+                  <td><%= link_to 'Edit', edit_klass_section_path(@klass, section) %></td>
                 </tr>
               <% end %>
 
@@ -40,4 +40,4 @@
 </div>
 <br />
 
-<%= link_to 'New Student', new_klass_student_path(params[:klass_id]) %>
+<%#= link_to 'New Student', new_klass_student_path(params[:klass_id]) %>

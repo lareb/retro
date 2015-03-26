@@ -3,6 +3,8 @@ class TeachersController < ApplicationController
   load_and_authorize_resource :teacher
 
   def index
+    puts "---------------"
+    ap @teachers
     @render_breadcrumb = breadcrumb_path({:disable => "Teachers"})
     respond_to do |format|
       format.html

@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource :section
-  load_resource :klass
+  load_and_authorize_resource :klass
+  load_and_authorize_resource :section, :through => :klass
 
   # GET /sections
   # GET /sections.json

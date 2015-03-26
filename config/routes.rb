@@ -18,25 +18,33 @@ Pathshala::Application.routes.draw do
     resources :teacher_subjects, :path => 'subjects'
   end
 
-#  resources :klasses do
-#    resources :fee_structures, :path => "fees"
-#    #resources :klass_fees, :path => "fees"    
-#    resources :teacher_klasses, :path => "teachers"
-#    resources :sections do
-#      resources :students
-#      resources :teacher_sections, :path => "teachers"
-#    end
-#  end
-
   resources :klasses do
+    resources :fee_structures, :path => "fees"
+    #resources :klass_fees, :path => "fees"    
+    resources :teacher_klasses, :path => "teachers"
+    resources :sections do
+      resources :students
+      resources :teacher_sections, :path => "teachers"
+    end
+    
     member do
       get "profile", :path => "myprofile"
     end
     
     collection do
       get "all"
-    end
- end
+    end    
+  end
+
+#  resources :klasses do
+#    member do
+#      get "profile", :path => "myprofile"
+#    end
+#    
+#    collection do
+#      get "all"
+#    end
+# end
   
   resources :courses do
     resources :course_fees, :path => "fees"
