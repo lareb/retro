@@ -5,6 +5,7 @@
                 <th>Sections</th>
                 <th>Students</th>
                 <th>Teachers</th>
+                <th>Fee Structure</th>
                 <th></th>
               </tr>
             </thead>
@@ -23,6 +24,7 @@
                         (link_to(raw("<i class='fa fa-plus'></i>"), new_klass_section_teacher_section_path(klass, section), :remote => true, :class => "btn btn-primary btn-xs", "data-target" => "#modalId", "data-toggle" => "modal"))}.join("<hr/>") %>
                       
                   </td>
+                  <td><%= link_to "Fee Structure", klass_klass_fees_path(klass)%></td>
                   <td><%= link_to 'Edit', edit_klass_path(klass), :remote => true, "data-target" => "#modalId", "data-toggle" => "modal" %></td>
                 </tr>
               <% end %>

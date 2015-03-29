@@ -5,7 +5,10 @@ class KlassFeesController < ApplicationController
 
   def index
     #@klass_fees = KlassFee.all
-
+    @fee_types = FeeType.all
+    puts "------------"
+    ap @klass_fees
+    @klass_fee = KlassFee.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @klass_fees }
@@ -43,15 +46,14 @@ class KlassFeesController < ApplicationController
   # POST /klass_fees.json
   def create
     #@klass_fee = KlassFee.new(params[:klass_fee])
-
-    respond_to do |format|
-      if @klass_fee.save
-        format.html { redirect_to klass_klass_fees_path(@klass), notice: 'Klass fee was successfully created.' }
-        format.json { render json: @klass_fee, status: :created, location: @klass_fee }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @klass_fee.errors, status: :unprocessable_entity }
+    begin
+      params[:fee].each do |fee_type_id, amount|
+        KlassFee.create({klass_id: @klass.id, fee_type_id: fee_type_id, amount: amount[:amount]})
       end
+    
+      redirect_to klass_klass_fees_path(@klass), notice: 'Klass fee was successfully created.'
+    #rescue Exception => e
+    #    render action: "new" 
     end
   end
 

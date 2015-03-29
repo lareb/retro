@@ -1,43 +1,49 @@
 <%= render :partial => "/layouts/header_breadcrumb", :locals => {:header => "Fees", :sub_header => "for #{@klass.display_name}", :breadcrumb => @breadcrumb} %>
 <!-- /.row -->
 <div class="row">
-    <div class="col-lg-12">
+  <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">        
         <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Fees <a href="#" class="toggle-list" style="float:right"><i class="fa fa-chevron-circle-right"></i></a></h3>
       </div>
-      <div class="panel-body data-list-toggle">
-        <div class="table-responsive">
-          <table id="klass_fees" class="table table-striped table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Fee</th>
-                <th>Amount</th>
-                <th>Cycle</th>
-                <th>Description</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
+      
+      <div class="panel-body">
+        <div class="panel-body col-lg-6">
 
-            <% @klass_fees.each do |klass_fee| %>
-              <tbody>
-                <tr>
-                  <td><%= klass_fee.klass.try(:display_name) %></td>
-                  <td><%= klass_fee.fee.try(:display_name) %></td>
-                  <td><%= klass_fee.amount %></td>
-                  <td><%= klass_fee.cycle %></td>
-                  <td><%= klass_fee.description %></td>
-                  <td><%= link_to 'Edit', edit_klass_klass_fee_path(@klass, klass_fee) %></td>
-                  <td><%= link_to 'Destroy', klass_klass_fee_path(@klass, klass_fee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
+          <%@fee_types.each_with_index do |type, index|%>
+            <div class="form-group">
+              <div class="col-md-4 fee_name"><%= type.name %></div>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="fee_type" value="<%=type.id%>">
+              </label>
+            </div>
+          <%end%>
+
         </div>
-        <!-- /.table-responsive -->
+
+        <div class="panel-body col-lg-6 fee_structure_details">
+
+          <%= simple_form_for([@klass, @klass_fee]) do |f| %>
+            <div id="appen-fee">
+              <%@klass_fees.each do |klass_fee|%>
+                <div class="form-group input-group fee_type_1">
+                  <span class="input-group-addon"><%= klass_fee.fee_type.name %> <small>(per month)</small></span>
+                  <input type="text" name="fee[1][amount]" placeholder="Amount" class="amount form-control" value="<%=klass_fee.amount%>">
+                  <span class="input-group-addon annual_fee"> <%=klass_fee.amount * 12%> Annually</span></div>          
+              <%end%>
+            </div>
+
+            <button class="btn btn-info pull-right btn" type="submit">
+              <i class="icon-ok bigger-110"></i>
+              Submit
+            </button>
+          <%end%>
+        </div>
+        <div  id="total_fees" class="col-md-4 fee_name"></div>
+        <div  id="total_fees_annual" class="col-md-4 fee_name"></div>
+        
       </div>
+      
       <!-- /.panel-body -->
     </div>
     <!-- /.panel -->

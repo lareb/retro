@@ -19,7 +19,7 @@ Pathshala::Application.routes.draw do
   end
 
   resources :klasses do
-    resources :fee_structures, :path => "fees"
+    resources :klass_fees, :path => "fees"
     #resources :klass_fees, :path => "fees"    
     resources :teacher_klasses, :path => "teachers"
     resources :sections do
@@ -62,7 +62,7 @@ Pathshala::Application.routes.draw do
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]
   resources :documents
-  resources :fees
+  resources :fee_types
 
   #match 'teachers/:id' => 'teacher#show'
 

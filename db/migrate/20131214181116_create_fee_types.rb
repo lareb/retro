@@ -1,10 +1,8 @@
-class CreateFees < ActiveRecord::Migration
+class CreateFeeTypes < ActiveRecord::Migration
   def change
-    create_table :fees do |t|
+    create_table :fee_types do |t|
       t.string :name, :unique => true, :null => false
-      t.string :display_name
       t.text :description
-
       t.timestamps
     end
   end

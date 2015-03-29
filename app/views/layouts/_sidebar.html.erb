@@ -13,39 +13,50 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        
                         <li>
                             <%= link_to raw("<i class='fa fa-dashboard fa-fw'></i> Dashboard"), dashboard_index_path() %>
                         </li>
                         
-                        <%if (can? :manage, Klass) || (can? :manage, Course)%>
-                          <li class="<%if (controller.controller_name == 'klasses' && controller.action_name == 'index') || (controller.controller_name == 'courses' && controller.action_name == 'index')%>active<%end%>">
-                            <%= link_to raw('<i class="fa fa-edit fa-fw"></i> Classes and Cources<span class="fa arrow">'), "#" %>
-                            <ul class="nav nav-second-level">
-                                <%if can? :manage, Course%>
-                                  <li>
-                                    <%= link_to raw('Classes'),klasses_path %>
-                                  </li>
-                                <%end%>
-                                <%if can? :manage, Course%>
-                                    <li>
-                                      <%= link_to 'Course', courses_path %>
-                                    </li>
-                                <%end%>                               
-                            </ul>                            
-                          </li>
-                        <%end%>
+                        <li>
+                          <%= link_to raw('<i class="fa fa-edit fa-fw"></i> School and Components<span class="fa arrow">'), "#" %>
+                          <ul class="nav nav-second-level">
+                            <%if (can? :manage, Klass) || (can? :manage, Course)%>
+                              <li class="<%if (controller.controller_name == 'klasses' && controller.action_name == 'index') || (controller.controller_name == 'courses' && controller.action_name == 'index')%>active<%end%>">
+                                <%= link_to raw('<i class="fa fa-edit fa-fw"></i> Classes and Cources<span class="fa arrow">'), "#" %>
+                                <ul class="nav nav-third-level">
+                                    <%if can? :manage, Course%>
+                                      <li>
+                                        <%= link_to raw('Classes'),klasses_path %>
+                                      </li>
+                                    <%end%>
+                                    <%if can? :manage, Course%>
+                                        <li>
+                                          <%= link_to 'Course', courses_path %>
+                                        </li>
+                                    <%end%>                               
+                                </ul>                            
+                              </li>
+                            <%end%>                            
+                          
+                          
+                            <%if can? :manage, Teacher%>
+                              <li class="<%if controller.controller_name == 'teachers' && controller.action_name == 'index'%>active<%end%>">
+                                <%= link_to raw('<i class="fa fa-users fa-fw"></i> Teachers'),teachers_path %>
+                              </li>
+                            <%end%>
 
-                        <%if can? :manage, Teacher%>
-                          <li class="<%if controller.controller_name == 'teachers' && controller.action_name == 'index'%>active<%end%>">
-                            <%= link_to raw('<i class="fa fa-users fa-fw"></i> Teachers'),teachers_path %>
-                          </li>
-                        <%end%>
+                            <%if can? :manage, Subject%>
+                              <li class="<%if controller.controller_name == 'subjects' && controller.action_name == 'index'%>active<%end%>">
+                                <%= link_to raw('<i class="fa fa-book fa-fw"></i> Subjects'), subjects_path %>
+                              </li>
+                            <%end%>                          
+                          </ul>
+                        </li>
+                        
 
-                        <%if can? :manage, Subject%>
-                          <li class="<%if controller.controller_name == 'subjects' && controller.action_name == 'index'%>active<%end%>">
-                            <%= link_to raw('<i class="fa fa-book fa-fw"></i> Subjects'), subjects_path %>
-                          </li>
-                        <%end%>
+
+
 
                         <%if can? :manage, Admission%>
                             <li class="<%if controller.controller_name == 'admissions' && controller.action_name == 'index'%>active<%end%>">
@@ -63,14 +74,26 @@
                                   <%end%>                               
                               </ul>                              
                             </li>
-                        <%end%>
-
-                        <%if can? :manage, Document%>
-                            <li class="<%if controller.controller_name == 'document' && controller.action_name == 'index'%>active<%end%>">
-                              <%= link_to raw('<i class="fa fa-paperclip fa-fw"></i> Documents'), documents_path() %>
-                            </li>
-                        <%end%>                        
+                        <%end%>                       
                         
+                        <li>
+                          <%= link_to raw('<i class="fa fa-edit fa-fw"></i> Configurations<span class="fa arrow">'), "#" %>
+                          <ul class="nav nav-second-level">
+                            <%if can? :manage, Document%>
+                              <li class="<%if controller.controller_name == 'document' && controller.action_name == 'index'%>active<%end%>">
+                                <%= link_to raw('<i class="fa fa-paperclip fa-fw"></i> Documents'), documents_path() %>
+                              </li>
+                            <%end%> 
+                              
+                            <%if can? :manage, FeeType%>
+                              <li>
+                                <%= link_to raw('<i class="fa fa-dollar fa-fw"></i> Fee Type'), fee_types_path %>
+                              </li>
+                            <%end%>
+                          </ul>                            
+                        </li>                            
+                            
+                            
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

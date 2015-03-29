@@ -12,19 +12,17 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Display name</th>
                 <th>Description</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
-            <% @fees.each do |fee| %>
+            <% @fee_types.each do |fee| %>
             <tbody>
               <tr>
                 <td><%= fee.name %></td>
-                <td><%= fee.display_name %></td>
                 <td><%= fee.description %></td>
-                <td><%= link_to 'Edit', edit_fee_path(fee), :remote => true %></td>
+                <td><%= link_to 'Edit', edit_fee_type_path(fee), :remote => true %></td>
                 <td><%= link_to 'Destroy', fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             </tbody>
@@ -39,7 +37,7 @@
   </div>
   <!-- /.col-lg-12 -->
 </div>
-<%= link_to 'New Fee', new_fee_path, :remote => true %>
+<%= link_to 'New Fee', new_fee_type_path, :remote => true %>
 
 <div id="new_fee_form"></div>
 
