@@ -3,7 +3,7 @@ class Admission < ActiveRecord::Base
     :gender, :admission_batch_id, :father_name, :mother_name, :local_guardian_name, :relation_with_student, :nationality_id, :mother_language,
     :religion, :student_category, :address_line1, :address_line2, :city, :state, :zip, :country_id, :phone1, :phone2, :immediate_contact,
     :guardian_email, :occupation, :income, :education, :blood_group, :birth_place, :status_description, :is_active, :is_deleted, :former_id, 
-    :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year
+    :is_sms_enabled, :last_batch, :last_batch_result, :last_batch_result_in_per, :last_institution, :last_academic_year, :status
 
   has_one   :asset, :as => :attachable, :dependent =>:destroy
   #has_many  :attachments, :as => :attachmentable #, :dependent =>:destroy
@@ -28,5 +28,16 @@ class Admission < ActiveRecord::Base
     address.join("<br/>")
   end
 
+  def last_result
+    "#{self.last_batch_result.capitalize} with #{self.last_batch_result_in_per}% Marks in #{self.last_academic_year}"
+  end
 
+  def contact_info
+    contacts = []
+    contacts << "#{self.phone1} (Mobile)" unless self.phone1.blank?
+    contacts << "#{self.phone2} (Phone)" unless self.phone2.blank?
+    contacts << "#{self.guardian_email} (email)" unless self.guardian_email.blank?
+    return contacts.join("<br/>")
+  end
+  
 end

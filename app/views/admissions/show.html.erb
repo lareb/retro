@@ -1,13 +1,14 @@
-<div class="detailed-view">
-  <p class="message"><%= @admission.name %> (Admission # <%=@admission.admission_no%>) Son/Daughter of <%=@admission.father_name%> <%unless @admission.last_klass.nil?%>has pass out
-Class <%=@admission.last_klass.display_name%> from <%=@admission.last_institution%> with <%=@admission.last_batch_result_in_per%><%else%>applied for Class <%=@admission.admission_batch.display_name%><%end%><br/><br/>
+<%= render :partial => "/layouts/header_breadcrumb", :locals => {:header => "Admission profile", :sub_header => "for #{@admission.name}", :breadcrumb => @breadcrumb} %>
 
+<div class="alert alert-info">
+  <strong><%= @admission.name %></strong> (Admission # <%=@admission.admission_no%>) Son/Daughter of <%=@admission.father_name%> <strong><%unless @admission.last_klass.nil?%>has pass out
+  Class <%=@admission.last_klass.display_name%> from <%=@admission.last_institution%> with <%=@admission.last_batch_result_in_per%><%else%>applied for Class <%=@admission.admission_batch.display_name%><%end%></strong><br/>
   Admission comity will review this Application soon</p>
-
-
-  <div class="buttons-full-page" style="padding: 0px 60px;">
-    <%= link_to "Home", root_path, :class => "button" %>
-    <%= link_to "Admission Review", review_admission_path(@admission), :class => "button right" %>
-  </div>
-
 </div>
+
+<%= render :partial => "show", :locals => {:admission => @admission} %>
+
+
+<%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Home"), root_path, :class => "btn btn-primary" %>
+<%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Admission Review"), review_admission_path(@admission), :class => "btn btn-success pull-right" %>
+  

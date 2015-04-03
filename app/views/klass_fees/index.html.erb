@@ -28,7 +28,7 @@
               <%@klass_fees.each do |klass_fee|%>
                 <div class="form-group input-group fee_type_1">
                   <span class="input-group-addon"><%= klass_fee.fee_type.name %> <small>(per month)</small></span>
-                  <input type="text" name="fee[1][amount]" placeholder="Amount" class="amount form-control" value="<%=klass_fee.amount%>">
+                  <input type="text" name="fee[<%= klass_fee.fee_type.id %>][amount]" placeholder="Amount" class="amount form-control" value="<%=klass_fee.amount%>">
                   <span class="input-group-addon annual_fee"> <%=klass_fee.amount * 12%> Annually</span></div>          
               <%end%>
             </div>

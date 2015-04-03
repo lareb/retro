@@ -1,29 +1,7 @@
 <%= render :partial => "/layouts/header_breadcrumb", :locals => {:header => "Admission Documents", :sub_header => "for #{@admission.name}", :breadcrumb => @breadcrumb} %>
 
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-primary">
-
-      
-      <div class="col-lg-4">
-        <%= image_tag (@admission.try(:asset).try(:data, :small).nil? ? "/assets/web/default-stdnt.jpg" : @admission.try(:asset).try(:data, :small)) %>
-      </div>      
-      
-      <div class="col-lg-4s">
-          <%= raw display_label("Admission #",@admission.admission_no)%>
-          <%= raw display_label("Date of Birth", @admission.date_of_birth) %>
-          <%= raw display_label("Blood Group", @admission.blood_group) %>
-          <%= raw display_label("Gender", @admission.gender) %>
-
-          <%= raw display_label("Last Passed Class", "#{@admission.last_klass.try(:display_name)} in #{@admission.last_academic_year}") %>
-          <%= raw display_label("Last result", "#{@admission.last_batch_result} with #{@admission.last_batch_result_in_per}%") %>
-          <%= raw display_label("Last School", @admission.last_institution) %>
-          <%= raw display_label("Admission in #",@admission.admission_batch.try(:display_name))%>
-      </div> 
-    </div>
-  </div>  
-</div>
+<%= render :partial => "/admissions/show", :locals => {:admission => @admission} %>
 
 
 
@@ -66,12 +44,9 @@
 <!-- /.row -->          
 <br/>
 
-<div id="new_admission_form">
-  <%= link_to 'New Admission', new_admission_admission_document_path(@admission), :remote => true, :class => "button right-bottom-corner" %>
-</div>
-
-<%= link_to 'Next', "#", :class => "button right-bottom-corner" %>
-
+  <%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Upload New Document"), new_admission_admission_document_path(@admission), :remote => true, :class => "btn btn-primary" %>
+  <%= link_to raw("Next <i class='fa fa-arrow-right fa-fw'></i>"), "#", :class => "btn btn-success pull-right" %>
+<div id="new_admission_form"></div>
 <script src="/assets/admin/jquery.dataTables.js"></script>
 <script src="/assets/admin/dataTables.bootstrap.js"></script> 
 <script type="text/javascript">

@@ -46,9 +46,11 @@ class KlassFeesController < ApplicationController
   # POST /klass_fees.json
   def create
     #@klass_fee = KlassFee.new(params[:klass_fee])
+    ap params[:fee]
     begin
       params[:fee].each do |fee_type_id, amount|
-        KlassFee.create({klass_id: @klass.id, fee_type_id: fee_type_id, amount: amount[:amount]})
+        puts "=======xx=========="
+        ap KlassFee.create({klass_id: @klass.id, fee_type_id: fee_type_id, amount: amount[:amount]})
       end
     
       redirect_to klass_klass_fees_path(@klass), notice: 'Klass fee was successfully created.'

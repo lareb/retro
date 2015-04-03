@@ -1,0 +1,84 @@
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <%= admission.name  %>
+      </div>
+      
+      <div class="panel-body">
+        <div class="col-md-2">
+          <%= image_tag (admission.try(:asset).try(:data, :small).nil? ? "/assets/web/default-stdnt.jpg" : admission.try(:asset).try(:data, :small)) %>
+        </div>
+        
+        <div class="col-md-10">
+          <div class="col-md-6 panel-body">
+            <h4>Basic Info</h4>
+            <div>
+              <div class='col-md-6'>Student's full name</div>
+              <div class='col-md-6 strong'><%= admission.name%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Admission #</div>
+              <div class="col-md-6 strong"><%= admission.admission_no%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Date of Birth</div>
+              <div class="col-md-6 strong"><%= admission.date_of_birth.strftime("%d %b %Y")%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Gender</div>
+              <div class="col-md-6 strong"><%= admission.gender %></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Admission for </div>
+              <div class="col-md-6 strong"><%= admission.admission_batch.display_name %></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Last Batch (result)</div>
+              <div class="col-md-6 strong"><%= admission.last_klass.display_name %> (<%= admission.last_result %>)</div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Last School/Institute</div>
+              <div class="col-md-6 strong"><%= admission.last_institution %></div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 panel-body"> 
+            <h4>Other Info</h4>
+            <div>
+              <div class='col-md-6'>Father's Name</div>
+              <div class='col-md-6'><%= admission.father_name%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Mother's Name</div>
+              <div class="col-md-6"><%= admission.mother_name%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Contact Numbers</div>
+              <div class="col-md-6"><%= admission.contact_info%></div>
+            </div>
+
+            <div>
+              <div class="col-md-6">Communication Address</div>
+              <div class="col-md-6"><address><%= raw(admission.address) %></address></div>
+            </div>
+          </div>          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%#= link_to "Next", admission_admission_documents_path(@admission), :class => "button right-bottom-corner" %>
+

@@ -1,42 +1,18 @@
-<div class="left-sec">
+<%= render :partial => "/layouts/header_breadcrumb", :locals => {:header => "Admission review", :sub_header => "for #{@admission.name}", :breadcrumb => @breadcrumb} %>
 
-  <div class="student-pic">
-    <%= image_tag (@admission.try(:asset).try(:data, :small).nil? ? "/assets/web/default-stdnt.jpg" : @admission.try(:asset).try(:data, :small)) %>
-  </div>
+<%= render :partial => "show", :locals => {:admission => @admission} %>
 
-  <div class="student-basic-info">
-      <h2><%= @admission.name %></h2>
-      <%= raw display_label("Admission #",@admission.admission_no)%>
-      <%= raw display_label("Date of Birth", @admission.date_of_birth) %>
-      <%= raw display_label("Blood Group", @admission.blood_group) %>
-      <%= raw display_label("Gender", @admission.gender) %>
+<!-- confirmation checkbox will come here -->
+<!--I hereby confirm that I have verified the profile -->
 
-      <%= raw display_label("Last Passed Class", "#{@admission.last_klass.try(:display_name)} in #{@admission.last_academic_year}") %>
-      <%= raw display_label("Last result", "#{@admission.last_batch_result} with #{@admission.last_batch_result_in_per}%") %>
-      <%= raw display_label("Last School", @admission.last_institution) %>
-      <%= raw display_label("Admission in #",@admission.admission_batch.try(:display_name))%>
-  </div>
-  
-</div>
+<%= link_to raw("<i class='fa fa-arrow-left fa-fw'></i> Back to Admissions"), admission_admission_documents_path(@admission), :class => "btn btn-success" %>
+<%= simple_form_for @admission, :html => {:class => "pull-right", :method => :put} do |f|%>
+  <%= f.input :status, :as => :boolean, :label => "I hereby confirm that I have verified the profile" %>
+  <button type="submit" class="btn btn-info pull-right btn">
+    <i class="fa fa-arrow-right fa-fw"></i>
+    Next
+  </button>  
+<%end%>
 
-<div class="right-sec">
-    <%= raw display_label("Father's Name",@admission.father_name)%>
-    <%= raw display_label("Mother's Name", @admission.mother_name) %>
-    <%= raw display_label("Local Guardian Name", @admission.local_guardian_name) %>
-    <%= raw display_label("Nationality", @admission.nationality_id) %>
-    <%= raw display_label("Mother Language", @admission.mother_language) %>
-    <%= raw display_label("Religion", @admission.religion) %>
 
-    <%= raw display_label("Student Category",@admission.student_category)%>
-    <%= raw display_label("Contact numbers", "#{@admission.phone1}, #{@admission.phone2}") %>
-    <%= raw display_label("Immediate Contact", @admission.immediate_contact) %>
-    <%= raw display_label("Guardian Email", @admission.guardian_email) %>
-    <%= raw display_label("Father's Occupation", @admission.occupation) %>
-    <%= raw display_label("Income", @admission.income) %>
-
-    <%= raw display_label("Father's education",@admission.education)%>
-    <%= raw display_label("Birth place", "#{@admission.birth_place}") %>
-
-</div>
-<%= link_to "Next", admission_admission_documents_path(@admission), :class => "button right-bottom-corner" %>
 
