@@ -54,10 +54,11 @@ Pathshala::Application.routes.draw do
     collection do
       get "review"
     end
-    member do
-      get "review", :to => "admissions#student_review"
+    resources :admission_documents, :path => 'documents' do
+      collection do
+        get "review", :to => "admissions#student_review"
+      end
     end
-    resources :admission_documents, :path => 'documents'
   end
   resources :roles, :only => [:index]
   resources :dashboard, :only => [:index]

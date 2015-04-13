@@ -21,7 +21,7 @@
       <td><%= admission.last_klass.try(:display_name) %></td>
       <td><%= admission.last_institution %></td>
       <td><%= admission.last_batch_result_in_per %></td>
-      <td><%= link_to 'Edit', review_admission_path(admission) %></td>
+      <td><%#= link_to 'Edit', review_admission_path(admission) %></td>
     </tr>
   <% end %>
   </tbody>

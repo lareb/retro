@@ -5,13 +5,20 @@
 <!-- confirmation checkbox will come here -->
 <!--I hereby confirm that I have verified the profile -->
 
-<%= link_to raw("<i class='fa fa-arrow-left fa-fw'></i> Back to Admissions"), admission_admission_documents_path(@admission), :class => "btn btn-success" %>
-<%= simple_form_for @admission, :html => {:class => "pull-right", :method => :put} do |f|%>
-  <%= f.input :status, :as => :boolean, :label => "I hereby confirm that I have verified the profile" %>
-  <button type="submit" class="btn btn-info pull-right btn">
-    <i class="fa fa-arrow-right fa-fw"></i>
-    Next
-  </button>  
+<%= link_to raw("<i class='fa fa-arrow-left fa-fw'></i> Back to Admissions"), admissions_path(), :class => "btn btn-success" %>
+
+<%unless @admission.verified?%>
+  <%= simple_form_for(@admission, :html => {:class => "pull-right"}) do |f|%>
+    <input type="hidden" value="3" name="step">
+    
+    <%= f.input :status,:as => :boolean, :label => "I hereby confirm that I have verified the profile" %>
+    <button type="submit" class="btn btn-info pull-right btn">
+      <i class="fa fa-arrow-right fa-fw"></i>
+      Next
+    </button>  
+  <%end%>
+<%else%>
+  <%= link_to raw("Admission Documents < class='fa fa-arrow-right fa-fw'></i>"), admission_admission_documents_path(@admission), :class => "btn btn-success pull-right" %>    
 <%end%>
 
 

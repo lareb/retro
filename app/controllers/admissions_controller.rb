@@ -115,6 +115,11 @@ class AdmissionsController < ApplicationController
     @admission = Admission.find(params[:id])
     next_step = params[:step] == "2" ? @admission : edit_admission_path(@admission, :step => 2)
 
+    if params[:admission][:status] == "1" && params[:step] = "3"
+      params[:admission].merge!(status: "Verified")
+      next_step = admission_admission_documents_path(@admission)
+    end
+    
     begin
       Admission.transaction do
         #Student pic upload
@@ -125,6 +130,7 @@ class AdmissionsController < ApplicationController
           @admission.asset.update_attributes(params[:assets]) if params[:assets]
           asset = @admission.asset
         end
+        
         respond_to do |format|
           if @admission.update_attributes(params[:admission])
             asset.update_attribute(:attachable, @admission) unless asset.nil?

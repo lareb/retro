@@ -53,6 +53,10 @@ class AdmissionDocumentsController < ApplicationController
       format.js
     end
   end
+  
+  def student_review
+    @admission = Admission.find(params[:id])
+  end  
 
   def destroy
     @admission_document.destroy

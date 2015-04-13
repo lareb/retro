@@ -53,10 +53,6 @@
                             <%end%>                          
                           </ul>
                         </li>
-                        
-
-
-
 
                         <%if can? :manage, Admission%>
                             <li class="<%if controller.controller_name == 'admissions' && controller.action_name == 'index'%>active<%end%>">
@@ -64,11 +60,17 @@
                               <ul class="nav nav-second-level">
                                   <%if can? :manage, Admission%>
                                     <li>
+                                      <%= link_to 'Available Seats',admissions_path %>
+                                    </li>
+                                  <%end%>                                
+                                  <%if can? :manage, Admission%>
+                                    <li>
                                       <%= link_to 'Admission',admissions_path %>
                                     </li>
                                   <%end%>
                                   <%if can? :manage, Admission%>
                                       <li>
+                                        <%#= link_to 'Review', "#" %>
                                         <%= link_to 'Review', review_admissions_path %>
                                       </li>
                                   <%end%>                               

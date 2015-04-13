@@ -44,8 +44,14 @@
 <!-- /.row -->          
 <br/>
 
-  <%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Upload New Document"), new_admission_admission_document_path(@admission), :remote => true, :class => "btn btn-primary" %>
-  <%= link_to raw("Next <i class='fa fa-arrow-right fa-fw'></i>"), "#", :class => "btn btn-success pull-right" %>
+<%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Upload New Document"), new_admission_admission_document_path(@admission), :remote => true, :class => "btn btn-primary" %>
+<%unless @admission_documents.blank?%>
+  <%= link_to raw("<i class='fa fa-file-text fa-fw'></i> Admission Review"), review_admission_admission_documents_path(@admission), :class => "btn btn-success pull-right" %>
+  <%#= link_to raw("Next <i class='fa fa-arrow-right fa-fw'></i>"), "#", :class => "btn btn-success pull-right" %>
+<%else%>
+  <%= link_to raw("Next <i class='fa fa-arrow-right fa-fw'></i>"), "#", :class => "btn btn-success pull-right disabled", :title => "Admission Profile is not verified." %>
+<%end%>
+
 <div id="new_admission_form"></div>
 <script src="/assets/admin/jquery.dataTables.js"></script>
 <script src="/assets/admin/dataTables.bootstrap.js"></script> 

@@ -40,4 +40,8 @@ class Admission < ActiveRecord::Base
     return contacts.join("<br/>")
   end
   
+  def verified?
+    status.downcase == "verified"
+  end
+  
 end
