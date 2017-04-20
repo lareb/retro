@@ -50,9 +50,11 @@ Pathshala::Application.routes.draw do
     resources :course_fees, :path => "fees"
     resources :course_timings, :path => "timings"
   end
+  resources :admission_categories
   resources :admissions do
     collection do
       get "review"
+      get "available_seats"
     end
     resources :admission_documents, :path => 'documents' do
       collection do

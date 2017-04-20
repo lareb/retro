@@ -151,3 +151,8 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE admissions")
     :last_batch => klass, :last_batch_result => "pass", :last_batch_result_in_per => prng.rand(40..98), :last_institution => "#{school_name[rand(school_name.length)]}", :last_academic_year => 2012,:address_line1 => "#{prng.rand(1..100)}, #{address_1[rand(address_1.length)]}", :address_line2 => "#{address_2[rand(address_2.length)]}", :city => "indore", :state => "MP", :zip => "454001",
     :phone1 => "#{prng.rand(21528950..29999999)}", :date_of_birth => Date.parse("#{prng.rand(1..28)}-#{prng.rand(1..12)}-#{prng.rand(1996..2001)}"), :gender => "male"})
 end
+
+#Seed Admission Category data
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE admission_categories")
+admission_categories = [{:name => "General"}, {:name => "Other"}]
+AdmissionCategory.create(admission_categories)

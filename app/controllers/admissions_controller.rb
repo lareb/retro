@@ -207,4 +207,9 @@ class AdmissionsController < ApplicationController
     @admission = Admission.find(params[:id])
   end
 
+  def available_seats
+    @render_breadcrumb = breadcrumb_path({:disable => "Available Seats"})
+    @klasses = Klass.all
+  end
+  
 end

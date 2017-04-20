@@ -60,7 +60,7 @@
                               <ul class="nav nav-second-level">
                                   <%if can? :manage, Admission%>
                                     <li>
-                                      <%= link_to 'Available Seats',admissions_path %>
+                                      <%= link_to 'Available Seats',available_seats_admissions_path() %>
                                     </li>
                                   <%end%>                                
                                   <%if can? :manage, Admission%>

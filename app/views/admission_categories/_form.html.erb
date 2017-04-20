@@ -1,0 +1,19 @@
+<div class="inner-box-container">
+  <%= simple_form_for(@admission_category) do |f| %>
+    <% if @admission_category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@admission_category.errors.count, "error") %> prohibited this subject from being saved:</h2>
+
+        <ul>
+        <% @admission_category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= f.input :name %>
+      <%= f.submit "Save", :class => "btn btn-primary pull-right" %>
+      <%#*<button class="btn btn-primary" type="button">Primary</button>%>
+  <% end %>
+</div>
